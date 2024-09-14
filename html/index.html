@@ -6,8 +6,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <p>test</p>
-    </div>
+    <nav id="navigation">
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script>
+            $.get("/shared/nav.html", function(data){
+                $("#navigation").replaceWith(data);
+            });
+        </script>
+    </nav>
+
+    <section class="index-body">
+
+        <!-- IMAGENES DE PRUEBA -->
+        <img src="https://vastphotos.com/files/uploads/photos/10691/peaceful-water-landscape-photo-l.jpg?v=20220712073521" alt="">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3" alt="">
+
+    </section>
 </body>
 </html>

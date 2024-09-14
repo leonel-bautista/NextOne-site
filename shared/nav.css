@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Ubuntu", sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+.nav{
+    width: 100%;
+    height: 80px;
+    transform: translateY(45px);
+    transition: transform 0.5s ease,
+                background-color 0.2s ease-out;
+
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    background-color: transparent;
+
+    z-index: 100;
+}
+
+#background{
+    transition: transform 0.5s ease;
+}
+
+.nav-dark-background,
+.nav-light-background{
+    height: 100%;
+    width: 100%;
+    background-color: #390309;
+
+    position: absolute;
+    z-index: 55;
+    rotate: -0.3deg;
+
+    opacity: 0.2;
+}
+.nav-light-background{
+    background-color: #e62238;
+    z-index: 50;
+    rotate: 0.3deg;
+
+    opacity: 0.3;
+}
+
+
+.home-link-container, .pages-links-container,
+.account-link-container{
+    margin: auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    z-index: 150;
+}
+.home-link, .games-link, .downloads-link,
+.requirements-link, .account-link{
+    color: #ffffff;
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.home-link-container{
+    min-width: 150px;
+    width: 300px;
+
+    transition: width 0.5s ease;
+}
+.home-link-dark-background,
+.home-link-light-background{
+    height: 90px;
+    width: 180px;
+    background-color: #e62238;
+
+    position: absolute;
+    z-index: 60;
+    rotate: -2deg;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-width: 0 3px 3px 0;
+    box-shadow: -5px -5px 4px rgba(0, 0, 0, 0.1);
+}
+.home-link-dark-background{
+    height: 100px;
+    width: 200px;
+    z-index: 50;
+    rotate: 1deg;
+
+    opacity: 0.5;
+
+    border-width: 3px 0 0 3px;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.1);
+}
+.home-link{
+    width: 70%;
+    z-index: 150;
+}
+.home-logo{
+    width: auto;
+    height: 65px;
+
+    filter: saturate(0)
+            brightness(200%);
+    
+    transform: rotateX(30deg);
+}
+.home-link:hover .home-logo{
+    filter: saturate(8);
+    transition: filter 1.5s ease-out;
+}
+.home-link-container .home-link:hover .home-link-dark-background,
+.home-link:hover .home-link-light-background{
+    border-color: rgba(36, 230, 209, 0.8);
+}
+
+
+.pages-links-container{
+    width: 100%;
+}
+.pages-links-container a{
+    padding: 10px;
+
+    transition: box-shadow 0.5s ease-out,
+                transform 0.2s ease;
+}
+.pages-links-container a:hover{
+    box-shadow: 5px 5px #24e6d1;
+    transform: scale(1.05);
+}
+.pages-links-container a:hover i{
+    color: #91ecfe;
+}
+.pages-links-container a:hover span{
+    text-shadow: 0 0 4px #24e6d1;
+}
+.pages-links-container span{
+    padding-left: 5px;
+}
+
+
+.account-link-container{
+    width: 150px;
+    margin-right: 0;
+
+    transition: width 0.3s ease-out;
+}
+.account-link-container:hover{
+    width: 200px;
+}
+.account-background{
+    filter: contrast(0)
+            brightness(0);
+    opacity: 0.6;
+    
+    position: absolute;
+    transform: translateX(40px);
+    z-index: 80;
+}
+.account-link-container:hover .account-background{
+    filter: initial;
+}
+.account-background,
+.account-link-container span{
+    transition: transform 0.4s ease-out;
+}
+.account-link-container:hover .account-background,
+.account-link-container:hover span{
+    transform: scale(1.1);
+}
+.account-link span{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transform: translateX(40px);
+
+    transition: opacity 0.4s ease,
+                visibility 0.5s ease-in,
+                transform 0.4s ease-out;
+}
+.account-link-container:hover span{
+    opacity: 1;
+    visibility: visible;
+
+    text-shadow: 0 0 4px #24e6d1;
+}
+.account-link span,
+.account-link i{
+    z-index: 100;
+}
+.account-link i{
+    font-size: 40px;
+    color: #e62238;
+
+    position: absolute;
+    right: 10px;
+
+    transition: opacity 0.3s ease,
+                visibility 0.3s ease,
+                transform 1s ease;
+}
+.account-link-container:hover i{
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(30px);
+    color: #91ecfe;
+}
+
+
+/* Diseño alternativo al bajar en la página */
+.nav--scrollMode{
+    height: 70px;
+    transform: translateY(0px);
+    background-color: #e62238;
+    box-shadow: 0 3px 2px rgba(57, 3, 9, 0.4);
+}
+.homeLinkContainer--scrollMode{
+    min-width: 100px;
+    width: 200px;
+}
+.logo--scrollMode{
+    height: 60px;
+}
+.accountBackground--scrollMode{
+    height: 70px;
+    opacity: 0.8;
+    filter: contrast(0) brightness(2);
+}
+.background--hidden{
+    visibility: hidden;
+    opacity: 0;
+
+    transform: translateY(-45px);
+
+    transition: opacity 0.5s ease-out,
+                visibility 0.5s ease-out;
+}
