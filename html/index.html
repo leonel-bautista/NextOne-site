@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <title>Inicio</title>
+    
 </head>
 <body>
     <nav id="navigation">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script>
-            $.get("/shared/nav.html", function(data){
+            $.get("/shared/navbar.html", function(data){
                 $("#navigation").replaceWith(data);
             });
         </script>
