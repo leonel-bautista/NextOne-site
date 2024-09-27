@@ -148,6 +148,10 @@
 
     background-color: white;
 
+    /* background-image: url("https://img.freepik.com/premium-vector/blue-sky-background-pixel-art-style_475147-2665.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; */
+
     z-index: -1;
 }
 
