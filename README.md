@@ -1,3 +1,1 @@
-Sitio web sobre una aplicación para jugar en la nube tus juegos.
-En este podras navegar y registrarte, leer información sobre la aplicación, juegos disponibles y requerimientos.
-También se podrá ver los enlaces de descarga de la aplicación.
+Sitio web sobre una aplicación para jugar tus juegos por medio de la nube. En este podrás navegar y registrar una cuenta, leer información sobre la aplicación, los juegos disponibles y requerimientos. También podrás ver los enlaces de descarga de la aplicación y entrar a un foro de discusiones, aparte de leer las novedades que haya como nuevos juegos agregados a la lista, actualizaciones y así.
