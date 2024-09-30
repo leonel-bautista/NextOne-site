@@ -24,7 +24,7 @@ body{
 
     background-image: linear-gradient(
         to bottom,
-        #330b20,
+        #2b0d1d,
         #1a1328
     );
 }
@@ -140,7 +140,7 @@ body{
         margin-bottom: 10px;
     }
     tr.hide{
-        filter: brightness(0.5);
+        filter: brightness(0.3);
     }
     td{
         height: auto;

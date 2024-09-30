@@ -17,24 +17,7 @@ const addGameBtn = document.querySelector(".add-game-btn");
 
 let getData = localStorage.getItem('gameInfo') ? JSON.parse(localStorage.getItem('gameInfo')) : [];
 
-let imgInput = document.querySelector("#input-img");
-
 showInfo();
-
-// gameImage.onchange = function(){
-//     let fileReader = new FileReader();
-//     let imgInput = document.querySelector(".game-img");
-
-//     fileReader.onload = function(e){
-//         // imgUrl = e.target.result;
-//         imgInput.src = e.target.result;
-//     };
-
-//     fileReader.readAsDataURL(gameImage.files[0]);
-// }
-gameImage.onchange = function(){
-    imgInput.src = URL.createObjectURL(gameImage.files[0]);
-}
 
 function showInfo(){
     document.querySelectorAll('#data tr').forEach(info => info.remove());
@@ -46,7 +29,7 @@ function showInfo(){
                 <td>${index + 1}</td>
                 <!-- Campo: Imágen del juego -->
                 <td>
-                    <img class="game-img" id="input-img" src="${element.gameImage}" alt="${element.gameName}">
+                    <img class="game-img" src="${element.gameImage}" alt="${element.gameName}">
                 </td>
                 <!-- Campo: Información del juego -->
                 <td>
@@ -91,11 +74,11 @@ function deleteInfo(index){
 }
 function hideInfo(){
     let tr = document.querySelector("#data tr")
-    tr.classList.toggle("hide");
+
+    tr.classList.toggle("hide")
 }
 
-
-addGameBtn.addEventListener('click', ()=> {
+addGameBtn.addEventListener('click', () => {
     formScreen.style.display = "flex";
     form.reset();
 })
@@ -104,16 +87,28 @@ closeBtn.addEventListener('click', () => {
     formScreen.style.display = "none";
 })
 
+gameImage.addEventListener('change', function () {
+    const reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+        imgURL = reader.result;
+    });
+
+    reader.readAsDataURL(this.files[0]);
+})
+
 form.addEventListener('submit', (e)=> {
     e.preventDefault();
 
     const information = {
-        gameImage: gameImage.src,
+        id: Date.now(),
+        gameImage: imgURL,
         gameName: gameName.value,
         gameTags: gameTags.value,
         gamePlatforms: gamePlatforms.value,
         gameLaunchDate: gameLaunchDate.value,
-        gameDeveloper: gameDeveloper.value
+        gameDeveloper: gameDeveloper.value,
+        gameIsShown: true
     };
     getData.push(information);
     localStorage.setItem('gameInfo', JSON.stringify(getData));
