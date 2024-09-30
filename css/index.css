@@ -145,7 +145,7 @@ body{
     z-index: 20;
 
     span{
-        color: rgb(16, 255, 175);
+        color: #ec0f46;
     }
 }
 .frontPage-downloads-link{
@@ -166,13 +166,13 @@ body{
     justify-self: center;
     
     color: white;
-    background-color: rgb(37, 195, 158);
+    background-color: #a71539;
     border-radius: 10px;
 
     z-index: 25;
 }
 .frontPage-downloads-link:hover{
-    background-color: rgb(91, 242, 202);
+    background-color: #f74b76;
 }
 
 
