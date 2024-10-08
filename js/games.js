@@ -9,74 +9,84 @@ const gamePlatforms = document.querySelector("#platforms");
 const gameLaunchDate = document.querySelector("#launch-date");
 const gameDeveloper = document.querySelector("#developer");
 
-const hideBtn = document.querySelector(".toggle-hide-btn");
-const saveBtn = document.querySelector(".form-save-btn");
 const closeBtn = document.querySelector(".form-close-btn");
 const addGameBtn = document.querySelector(".add-game-btn");
 
 
 let getData = localStorage.getItem('gameInfo') ? JSON.parse(localStorage.getItem('gameInfo')) : [];
 
-showInfo();
+const showGames = () => {
+    gameList.innerHTML = "";
 
-function showInfo(){
-    document.querySelectorAll('#data tr').forEach(info => info.remove());
-
-    getData.forEach((element, index) => {
-        let createElement = `
-            <tr>
-                <!-- Campo: Número ID del juego -->
+    getData.forEach((game, index) => {
+        const tableRow = `
+            <tr data-id="${game.id}" class="${!game.isActive && "hidden"}">
+                <!-- Campo: Número del juego -->
                 <td>${index + 1}</td>
                 <!-- Campo: Imágen del juego -->
                 <td>
-                    <img class="game-img" src="${element.gameImage}" alt="${element.gameName}">
+                    <img class="game-img" src="${game.image}" alt="${game.name}">
                 </td>
                 <!-- Campo: Información del juego -->
                 <td>
-                    <span class="game-name">${element.gameName}</span>
+                    <span class="game-name">${game.name}</span>
                     <span class="game-tags">
-                        <span>${element.gameTags}</span>
+                        <span>${game.tags}</span>
                     </span>
                     <span class="game-available-platforms">
                         <span>Disponible en</span>
 
-                        <span>${element.gamePlatforms}</span>
+                        <span>${game.platforms}</span>
                     </span>
                 </td>
                 <!-- Campo: Desarrollo -->
                 <td>
-                    <span class="game-launch-date">${element.gameLaunchDate}</span>
+                    <span class="game-launch-date">${game.launchDate}</span>
                     <br>
-                    <span class="game-developed-by">${element.gameDeveloper}</span>
+                    <span class="game-developed-by">${game.developer}</span>
                 </td>
                 <!-- Campo: Administración -->
                 <td>
-                    <button class="toggle-hide-btn" onclick="hideInfo()">
-                        <i class="material-symbols-rounded">visibility_off</i>
+                    <button class="toggle-hide-btn hide">
+                        <i class="material-symbols-rounded hide">visibility_off</i>
                     </button>
-                    <button class="delete-btn" onclick="deleteInfo(${index})">
-                        <i class="material-symbols-rounded">delete</i>
+                    <button class="delete-btn delete">
+                        <i class="material-symbols-rounded delete">delete</i>
                     </button>
                 </td>
             </tr>
         `
 
-        gameList.innerHTML += createElement
+        gameList.innerHTML += tableRow;
     });
 }
 
-function deleteInfo(index){
-    if(confirm("Está seguro de eliminar?")){
-        getData.splice(index, 1);
-        localStorage.setItem("gameInfo", JSON.stringify(getData));
-        showInfo();
-    };
-}
-function hideInfo(){
-    let tr = document.querySelector("#data tr")
+gameList.addEventListener('click', (event) => {
+    if(event.target.classList.contains("hide")){
+        const id = event.target.closest("tr").dataset.id;
+        const game = getData.find((game) => game.id == id);
+    
+        game.isActive = !game.isActive;
 
-    tr.classList.toggle("hide")
-}
+        event.target.closest("tr").classList.toggle("hidden");
+        
+        localStorage.setItem('gameInfo', JSON.stringify(getData));
+        showGames();
+    }
+    if(event.target.classList.contains("delete")){
+        const id = event.target.closest("tr").dataset.id;
+        const game = getData.find((game) => game.id == id);
+
+        if(confirm("Está seguro de eliminar?")){
+            getData.splice(game, 1);
+
+            const tableRow = event.target.closest("tr");
+            tableRow.remove();
+
+            localStorage.setItem('gameInfo', JSON.stringify(getData));
+        };
+    }
+})
 
 addGameBtn.addEventListener('click', () => {
     formScreen.style.display = "flex";
@@ -97,23 +107,30 @@ gameImage.addEventListener('change', function () {
     reader.readAsDataURL(this.files[0]);
 })
 
-form.addEventListener('submit', (e)=> {
-    e.preventDefault();
+form.addEventListener('submit', async (event)=> {
+    event.preventDefault();
 
-    const information = {
+    const value_gameName = gameName.value.trim();
+    const value_gameDeveloper = gameDeveloper.value.trim();
+
+    const game = {
         id: Date.now(),
-        gameImage: imgURL,
-        gameName: gameName.value,
-        gameTags: gameTags.value,
-        gamePlatforms: gamePlatforms.value,
-        gameLaunchDate: gameLaunchDate.value,
-        gameDeveloper: gameDeveloper.value,
-        gameIsShown: true
+        image: imgURL,
+        name: value_gameName,
+        tags: gameTags.value,
+        platforms: gamePlatforms.value,
+        launchDate: gameLaunchDate.value,
+        developer: value_gameDeveloper,
+        isActive: true,
     };
-    getData.push(information);
+    getData.push(game);
     localStorage.setItem('gameInfo', JSON.stringify(getData));
-    showInfo();
+    showGames();
 
     form.reset();
     formScreen.style.display = "none";
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    showGames();
 })
