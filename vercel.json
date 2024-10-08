@@ -1,6 +1,12 @@
 {
-  "trailingSlash": false,
   "rewrites": [
-    { "source": "/:path*", "destination": "/html/index.html" }
+    {
+      "source": "/.*",
+      "destination": "/:subdir"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
   ]
 }
