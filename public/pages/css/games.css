@@ -96,7 +96,10 @@ body{
     CONTENIDO DE LA TABLA
 */
 .hidden{
-    filter: brightness(0.3);
+    td:not(:last-child, :first-child){
+        cursor: default;
+        filter: brightness(0.3);
+    }
 }
 .table-body{
     width: 100%;
