@@ -24,7 +24,7 @@ body{
 
     background-image: linear-gradient(
         to bottom,
-        #330b20,
+        #2b0d1d,
         #1a1328
     );
 }
@@ -95,6 +95,12 @@ body{
 /* 
     CONTENIDO DE LA TABLA
 */
+.hidden{
+    td:not(:last-child, :first-child){
+        cursor: default;
+        filter: brightness(0.3);
+    }
+}
 .table-body{
     width: 100%;
     height: 100%;
@@ -139,15 +145,13 @@ body{
         grid-template-rows: 1fr;
         margin-bottom: 10px;
     }
-    tr.hide{
-        filter: brightness(0.5);
-    }
     td{
         height: auto;
         max-height: 120px;
         padding: 5px;
 
         align-content: center;
+        overflow: hidden;
 
         background-image: linear-gradient(
             to bottom,

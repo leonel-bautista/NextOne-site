@@ -4,3 +4,6 @@ test
 # footer pendiente
 shared/footer.html
 shared/footer.css
+
+#node
+node_modules
