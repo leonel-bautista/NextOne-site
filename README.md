@@ -1,4 +1,4 @@
-Sitio web sobre una aplicación inventada, aplicación la cual te permite
+Sitio web sobre una aplicación (inventada), aplicación la cual te permite
 jugar tus propios juegos de forma fluida por medio de sus servidores sin
 depender del hardware utilizado (tanto pc de escritorio como smartphones)
 

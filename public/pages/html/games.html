@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/games.css">
+    <link rel="stylesheet" href="../css/games.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,-25" />
 
     <title>Juegos</title>
@@ -14,7 +14,7 @@
     <nav id="navigation">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <script>
-            $.get("/shared/navbar.html", function(data){
+            $.get("../shared/navbar.html", function(data){
                 $("#navigation").replaceWith(data);
             });
         </script>
@@ -103,6 +103,6 @@
         </div>
     </main>
 
-    <script src="/js/games.js"></script>
+    <script src="../js/games.js"></script>
 </body>
 </html>
