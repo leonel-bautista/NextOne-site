@@ -52,7 +52,7 @@ INSERT INTO `developers` (`developer_id`, `developer_name`) VALUES
 
 CREATE TABLE `games` (
   `game_id` int(11) NOT NULL,
-  `image` varchar(50) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `game_name` varchar(100) NOT NULL,
   `launch_date` date DEFAULT NULL,
   `developer_id` int(11) NOT NULL

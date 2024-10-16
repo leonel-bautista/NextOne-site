@@ -10,7 +10,7 @@ const showEveryGame = (req, res) => {
 
     db.query(sql, (error, rows) => {
         if(error){
-            return res.status(500).json({error: "❌ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
         res.json(rows);
     })
@@ -22,10 +22,10 @@ const showOneGame = (req, res) => {
 
     db.query(sql, [game_id], (error, rows) => {
         if(error){
-            return res.status(500).json({error: "❌ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
         if(rows.length == 0){
-            return res.status(404).json({error: "❌ERROR: No se encontraron resultados"});
+            return res.status(404).json({error: "(❌)ERROR: No se encontraron resultados"});
         }
         res.json(rows[0]);
     })
@@ -43,7 +43,7 @@ const storeGame = (req, res) => {
         if(error){
             return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
-        const game = {...req.body, game_id: result.insertId};
+        const game = {game_id: result.insertId, image: imageName, ...req.body};
         res.status(201).json(game);
     })
 }
@@ -60,12 +60,12 @@ const updateGame = (req, res) => {
 
     db.query(sql, [imageName, game_name, launch_date, developer_id, game_id], (error, result) => {
         if(error){
-            return res.status(500).json({error: "❌ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
         if(result.affectedRows == 0){
-            return res.status(404).json({error: "❌ERROR: No se encontraron los datos a actualizar"});
+            return res.status(404).json({error: "(❌)ERROR: No se encontraron los datos a actualizar"});
         }
-        const game = {...req.body, ...req.params};
+        const game = {...req.params, image: imageName, ...req.body};
         res.json(game);
     })
 }
@@ -77,10 +77,10 @@ const removeGame = (req, res) => {
 
     db.query(sql, [game_id], (error, result) => {
         if(error){
-            return res.status(500).json({error: "❌ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
         if(result.affectedRows == 0){
-            return res.status(404).json({error: "❌ERROR: No se encontraron los datos a eliminar"})
+            return res.status(404).json({error: "(❌)ERROR: No se encontraron los datos a eliminar"})
         }
         res.json({mensaje: "✅ Juego eliminado con éxito"});
     })

@@ -49,7 +49,7 @@ const showFullList = (req, res) => {
 
     db.query(sql, (error, rows) => {
         if(error){
-            return res.status(500).json({error: "❌ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
 
         res.json(rows);
@@ -103,10 +103,10 @@ const showOneRow = (req, res) => {
 
     db.query(sql, [game_id], (error, rows) => {
         if(error){
-            return res.status(500).json({error: "❌ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
         }
         if(rows.length == 0){{
-            return res.status(404).send({error: "❌ERROR: No se encontraron resultados"});
+            return res.status(404).send({error: "(❌)ERROR: No se encontraron resultados"});
         }}
 
         res.json(rows[0]);

@@ -7,6 +7,7 @@ app.use(express.json());
 
 // RUTAS
 app.use('/db-Table-raw/games', require('./routes/games.routes'));
+app.use('/db-Table-raw/tags', require('./routes/tags.routes'))
 
 app.use('/games', require('./routes/gamesList.routes'));
 
