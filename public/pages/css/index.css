@@ -60,7 +60,7 @@ body{
     grid-row: 1 / 9;
     grid-column: 1 / 8;
 
-    mask-image: url(/imgs/fondo-inicio-mascara.png);
+    mask-image: url(../imgs/fondo-inicio-mascara.png);
     mask-size: 100%;
     mask-repeat: no-repeat;
     mask-position: center;
