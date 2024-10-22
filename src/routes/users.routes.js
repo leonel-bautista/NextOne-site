@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/games.controller');
+const controller = require('../controllers/users.controller');
 
 
 // MULTER
@@ -40,19 +40,16 @@ const upload = multer({
 
 
 // METODO GET
-// para todos los juegos
-router.get('/', controller.showEveryGame);
-// para un solo juego
-router.get('/:game_id', controller.showOneGame);
-
-// METODO POST
-router.post('/', upload.single('game_image'), controller.storeGame);
+// para todos los usuarios
+router.get('/', controller.showEveryUser);
+// para un solo usuario
+router.get('/:user_id', controller.showOneUser);
 
 // METODO PUT
-router.put('/:game_id', upload.single('game_image'), controller.updateGame);
+router.put('/:user_id', upload.single('user_image'), controller.updateUser);
 
 // METODO DELETE
-router.delete('/:game_id', controller.removeGame);
+router.delete('/:user_id', controller.removeUser);
 
 
 // EXPORTAR

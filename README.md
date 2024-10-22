@@ -1,8 +1,8 @@
 Sitio web sobre una aplicación (inventada), aplicación la cual te permite
 jugar tus propios juegos de forma fluida por medio de sus servidores sin
-depender del hardware utilizado (tanto pc de escritorio como smartphones)
+depender del hardware utilizado (tanto pc de escritorio como smartphones).
 
-En este sitio web podrás:
+Como meta final, en este sitio web se podrá:
   - Registrar y administrar una cuenta.
   - Leer información sobre la aplicación (requerimientos, descargas,
     entre otros).
@@ -11,5 +11,5 @@ En este sitio web podrás:
   - Leer las novedades que haya (juegos nuevos agregados a la lista,
     actualizaciones, entre otras).
 
-Por ahora solamente podrás:
-  - Consultar los juegos disponibles.
+Por ahora, solamente podrás:
+  - Consultar los juegos disponibles (utilizando local storage).

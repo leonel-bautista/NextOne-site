@@ -4,7 +4,7 @@ const connection = mySql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "games_list"
+    database: "nextone-db"
 });
 
 connection.connect((error) => {

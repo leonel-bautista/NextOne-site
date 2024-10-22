@@ -4,3 +4,4 @@ test
 #node
 node_modules
 uploads/
+.env
