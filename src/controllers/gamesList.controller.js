@@ -47,12 +47,12 @@ const showFullList = (req, res) => {
         ) AS gameInfo;
     `;
 
-    db.query(sql, (error, rows) => {
+    db.query(sql, (error, result) => {
         if(error){
-            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌) ERROR: Vuelva a intentarlo más tarde"});
         }
 
-        res.json(rows);
+        res.json(result);
     });
 };
 // para una fila
@@ -101,15 +101,15 @@ const showOneRow = (req, res) => {
         WHERE gameInfo.game_id = ?;
     `;
 
-    db.query(sql, [game_id], (error, rows) => {
+    db.query(sql, [game_id], (error, result) => {
         if(error){
-            return res.status(500).json({error: "(❌)ERROR: Vuelva a intentarlo más tarde"});
+            return res.status(500).json({error: "(❌) ERROR: Vuelva a intentarlo más tarde"});
         }
-        if(rows.length == 0){{
-            return res.status(404).send({error: "(❌)ERROR: No se encontraron resultados"});
+        if(result.length == 0){{
+            return res.status(404).send({error: "(❌) ERROR: No se encontraron resultados"});
         }}
 
-        res.json(rows[0]);
+        res.json(result[0]);
     });
 };
 

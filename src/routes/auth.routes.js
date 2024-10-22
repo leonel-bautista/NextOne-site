@@ -1,10 +1,10 @@
-// RUTAS DEL MODULO //
+// RUTAS DEL MODULO
 
 const express = require('express');
 const router = express.Router();
 
-const controller = require('../controllers/games.controller');
-
+const controller = require('../controllers/auth.controller');
+const authMiddleware = require('../middleware/auth.middleware');
 
 // MULTER
 const multer = require('multer');
@@ -39,20 +39,16 @@ const upload = multer({
 });
 
 
-// METODO GET
-// para todos los juegos
-router.get('/', controller.showEveryGame);
-// para un solo juego
-router.get('/:game_id', controller.showOneGame);
+// METODO GET //
+// router.get('/protected', authMiddleware, (req, res) => {
+//     res.status(200).send(`Hola, Usuario N°${req.user_id}`);
+// })
 
 // METODO POST
-router.post('/', upload.single('game_image'), controller.storeGame);
-
-// METODO PUT
-router.put('/:game_id', upload.single('game_image'), controller.updateGame);
-
-// METODO DELETE
-router.delete('/:game_id', controller.removeGame);
+// registrarse
+router.post('/register', upload.single('user_image'), controller.register);
+// login
+router.post('/login', controller.login);
 
 
 // EXPORTAR

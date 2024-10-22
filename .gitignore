@@ -8,3 +8,4 @@ shared/footer.css
 #node
 node_modules
 uploads/
+.env
