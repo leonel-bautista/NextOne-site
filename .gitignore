@@ -1,7 +1,4 @@
-# carpeta test
-test
-
-#node
+#NODE.JS
 node_modules
-uploads/
+uploads
 .env
