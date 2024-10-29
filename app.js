@@ -22,6 +22,8 @@ app.use('/games-platforms', require('/@modules/games-platforms/games-platforms.r
 // tablas relacionadas a USUARIOS
 app.use('/users', require('/@modules/users/users.routes'));
 app.use('/tiers', require('/@modules/tiers/tiers.routes'));
+// tablas de administradores
+app.use('/admins', require('/@modules/admins/admins.routes'));
 
 
 // raíz
