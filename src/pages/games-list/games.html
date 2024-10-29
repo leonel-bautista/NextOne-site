@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./games.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,-25" />
+
+    <title>Juegos</title>
+
+</head>
+<body>
+    <nav id="navigation">
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $.get("/src/components/navbar/navbar.html", function(data){
+                $("#navigation").replaceWith(data);
+            });
+        </script>
+    </nav>
+
+    <main class="games-main">
+        <section class="tablePage">
+            <div class="table-header">
+                <h1 class="table-header-title">Lista de juegos disponibles</h1>
+                <button class="add-game-btn">Agregar juego...</button>
+            </div>
+
+            <table class="table-body">
+                <thead>
+                    <tr>
+                        <th>Nro</th>
+                        <th>Imágen del juego</th>
+                        <th>Información del juego</th>
+                        <th>Desarrollo</th>
+                        <th>Admin</th>
+                    </tr>
+                </thead>
+
+                <tbody id="data">
+                    <!-- Registros -->
+                </tbody>
+            </table>
+        </section>
+
+        <div class="form-dark-background">
+            <div class="addGameForm">
+                <div class="form-header">
+                    <h2>+ Agregar juego</h2>
+                    <button class="form-close-btn">
+                        <i class="material-symbols-rounded">close</i>
+                    </button>
+                </div>
+    
+                <form action="#" class="form-body" id="form">
+                    <div>
+                        <label for="img">Imágen del juego</label>
+                        <input type="file" id="img" required>
+                    </div>
+    
+                    <div>
+                        <label for="name">Nombre del juego</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div>
+                        <label for="tags">Etiquetas</label>
+                        <select name="" id="tags" required>
+                            <option value="" selected></option>
+                            <option value="FPS">FPS</option>
+                            <option value="Disparos">Disparos</option>
+                            <option value="Multijugador">Multijugador</option>
+                            <option value="Competitivos">Competitivos</option>
+                            <option value="Acción">Acción</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="platforms">Plataformas disponibles</label>
+                        <select name="" id="platforms" required>
+                            <option value=""></option>
+                            <option value="Steam">Steam</option>
+                            <option value="EpicGames">Epic Games</option>
+                            <option value="Xbox">Xbox</option>
+                            <option value="GOG.com">GOG.com</option>
+                            <option value="Battle.net">Battle.net</option>
+                            <option value="UbisoftConnect">Ubisoft Connect</option>
+                            <option value="EAapp">EA app</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="launch-date">Fecha de salida</label>
+                        <input type="date" id="launch-date" required>
+                    </div>
+                    <div>
+                        <label for="form-game-developer">Desarrollador</label>
+                        <input type="text" id="developer" required>
+                    </div>
+                    <div>
+                        <button type="submit" form="form" class="form-save-btn">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="./games.js"></script>
+</body>
+</html>

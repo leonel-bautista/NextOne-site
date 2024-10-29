@@ -1,11 +1,4 @@
-# carpeta test
-test
-
-# footer pendiente
-shared/footer.html
-shared/footer.css
-
-#node
+#NODE.JS
 node_modules
-uploads/
+uploads
 .env

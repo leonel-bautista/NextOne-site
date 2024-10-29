@@ -1,4 +1,7 @@
-const db = require('../db/db');
+
+////////////// MIDDLEWARE DE "USUARIOS" ////
+
+// const db = require('/@database/db');
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
