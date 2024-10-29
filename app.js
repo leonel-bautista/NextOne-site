@@ -24,6 +24,7 @@ app.use('/users', require('/@modules/users/users.routes'));
 app.use('/tiers', require('/@modules/tiers/tiers.routes'));
 // tablas de administradores
 app.use('/admins', require('/@modules/admins/admins.routes'));
+app.use('/roles', require('/@modules/roles/roles.routes'));
 
 
 // raíz
