@@ -1,80 +1,87 @@
+<head>
+    <link rel="stylesheet" href="/node_modules/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+    <link rel="stylesheet" href="/src/components/navbar/navbar.css">
+</head>
 
-<!-- COMPONENTE BARRA DE NAVEGACIÓN -->
+<body>
+    <div class="blackout-content"></div>
+    <nav class="navbar">
+        <ul class="nav-side">
+            <li>
+                <button class="nav-side-tools notifications-btn">
+                    <i class="hn hn-envelope-solid"></i>
+                    <span>Correo</span>
+                    <i class="hn hn-angle-left tool-pointer"></i>
+                </button>
+            </li>
+            <li>
+                <a href="/src/pages/index/index.html" class="nav-side-tools home-link">
+                    <i class="hn hn-home-solid"></i>
+                    <span>Inicio</span>
+                    <i class="hn hn-angle-left tool-pointer"></i>
+                </a>
+            </li>
+            <li>
+                <button class="nav-side-tools toggle-nav-btn">
+                    <i class="hn hn-play-solid"></i>
+                    <span>Menú</span>
+                    <i class="hn hn-angle-left tool-pointer"></i>
+                </button>
+            </li>
+            <li>
+                <button class="nav-side-tools site-settings-btn">
+                    <i class="hn hn-cog-solid"></i>
+                    <span>Ajustes</span>
+                    <i class="hn hn-angle-left tool-pointer"></i>
+                </button>
+            </li>
+            <li>
+                <a href="#" class="nav-side-tools logout-link">
+                    <i class="hn hn-logout-solid"></i>
+                    <span>Salir</span>
+                    <i class="hn hn-angle-left tool-pointer"></i>
+                </a>
+            </li>
+        </ul>
 
-<link rel="stylesheet" href="/src/components/navbar/navbar.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,-25">
+        <main class="nav-main">
+            <header class="nav-main-header">
+                <a href="#" class="user-image">
+                    <img src="/public/imgs/foto-usuario-predeterminada.png" alt="Foto de perfil">
+                </a>
+                <span class="user-tier">Moderador</span>
+                <span class="user-alias">Leo</span>
+                <a href="#" class="user-name">@leonel-bautista-2024</a>
+            </header>
 
-<nav class="sidebar">
-    <div class="nav-side">
-        <button class="nav-side-tools toggle-btn">
-            <i class="material-symbols-rounded">widgets</i>
-        </button>
+            <section class="nav-main-body">
+                <a href="/src/pages/games-list/games.html" class="nav-main-links games-link">
+                    <i class="hn hn-save-solid"></i>
+                    <span>Lista de juegos</span>
+                </a>
+                <a href="#" class="nav-main-links downloads-link">
+                    <i class="hn hn-download-solid"></i>
+                    <span>Descargas</span>
+                </a>
+                <a href="#" class="nav-main-links account-settings-link">
+                    <i class="hn hn-user-solid"></i>
+                    <span>Ajustes de cuenta</span>
+                </a>
+                <a href="#" class="nav-main-links discussions-link">
+                    <i class="hn hn-comments-solid"></i>
+                    <span>Discusiones</span>
+                </a>
+                <a href="#" class="nav-main-links about-link">
+                    <i class="hn hn-info-circle-solid"></i>
+                    <span>Acerca de</span>
+                </a>
+                <a href="#" class="nav-main-links news-link">
+                    <i class="hn hn-bullhorn-solid"></i>
+                    <span>Novedades</span>
+                </a>
+            </section>
+        </main>
+    </nav>
 
-        <a href="/src/pages/index/index.html" class="nav-side-tools home-link">
-            <i class="material-symbols-rounded">cottage</i>
-        </a>
-
-        <button class="nav-side-tools notifications-btn">
-            <i class="material-symbols-rounded">notifications</i>
-        </button>
-
-        <button class="nav-side-tools siteSettings-btn">
-            <i class="material-symbols-rounded">settings</i>
-        </button>
-
-        <button class="nav-side-tools siteOrientation-btn">
-            <i class="material-symbols-rounded">sync_alt</i>
-        </button>
-
-        <a href="#" class="nav-side-tools logout-link">
-            <i class="material-symbols-rounded">logout</i>
-        </a>
-    </div>
-
-    <div class="nav-main">
-        <div class="nav-main-header-container">
-            <a href="#" class="user-image">
-                <img src="/public/imgs/foto-usuario-predeterminada.png" alt="Foto de perfil">
-            </a>
-            <span class="user-status">Moderador</span>
-            <h3 class="user-alias">Leo</h3>
-            <a href="#" class="user-name">
-                @leonel-bautista-2024
-            </a>
-        </div>
-
-        <div class="nav-main-body-container">
-            <a href="/src/pages/games-list/games.html" class="nav-main-links games-link">
-                <i class="material-symbols-rounded">stadia_controller</i>
-                <span>Lista de Juegos</span>
-            </a>
-
-            <a href="#" class="nav-main-links downloads-link">
-                <i class="material-symbols-rounded">browser_updated</i>
-                <span>Descargas</span>
-            </a>
-
-            <a href="#" class="nav-main-links accountsettings-link">
-                <i class="material-symbols-rounded">manage_accounts</i>
-                <span>Ajustes de Cuenta</span>
-            </a>
-
-            <a href="#" class="nav-main-links discussions-link">
-                <i class="material-symbols-rounded">forum</i>
-                <span>Discusiones</span>
-            </a>
-
-            <a href="#" class="nav-main-links requirements-link">
-                <i class="material-symbols-rounded">quick_reference</i>
-                <span>Acerca de</span>
-            </a>
-
-            <a href="#" class="nav-main-links news-link">
-                <i class="material-symbols-rounded">brand_awareness</i>
-                <span>Novedades</span>
-            </a>
-        </div>
-    </div>
-</nav>
-
-<script src="/src/components/navbar/navbar.js"></script>
+    <script src="/src/components/navbar/navbar.js"></script>
+</body>
