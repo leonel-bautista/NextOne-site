@@ -1,19 +1,19 @@
 
 ////////////// RUTAS DEL MÓDULO "JUEGOS" ////
 
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const controller = require('./games.controller');
+import {methods as controller} from './games.controller.js'
 
 
 // MULTER
-const multer = require('multer');
-const path = require('node:path');
+import multer from 'multer';
+import path from 'node:path';
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, 'uploads');
+        callback(null, 'src/uploads/games-images');
     },
     filename: (req, file, callback) => {
         callback(null, Date.now() + path.extname(file.originalname));
@@ -42,23 +42,22 @@ const upload = multer({
 
 // MÉTODO GET
 // para todos los juegos
-router.get('/db-table-raw', controller.showEveryGame);
+router.get('/', controller.showEveryGame);
 // para un solo juego
-router.get('/db-table-raw/:game_id', controller.showOneGame);
-// para la información completa de todos los juegos
-router.get('/', controller.showFullList);
-// para la información completa de un solo juego
-router.get('/:game_id', controller.showOneFull);
+router.get('/:game_id', controller.showOneGame);
 
 // MÉTODO POST
-router.post('/db-table-raw', upload.single('game_image'), controller.storeGame);
+router.post('/', upload.single('game_image'), controller.storeGame);
 
 // MÉTODO PUT
-router.put('/db-table-raw/:game_id', upload.single('game_image'), controller.updateGame);
+router.put('/:game_id', upload.single('game_image'), controller.updateGame);
+
+// MÉTODO PATCH
+// acá iría el método
 
 // MÉTODO DELETE
-router.delete('/db-table-raw/:game_id', controller.removeGame);
+router.delete('/:game_id', controller.removeGame);
 
 
 // EXPORTAR
-module.exports = router;
+export const gamesRoutes = router;

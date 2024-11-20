@@ -1,87 +1,86 @@
-<head>
-    <link rel="stylesheet" href="/node_modules/@hackernoon/pixel-icon-library/fonts/iconfont.css">
-    <link rel="stylesheet" href="/src/components/navbar/navbar.css">
-</head>
 
-<body>
-    <div class="blackout-content"></div>
-    <nav class="navbar">
-        <ul class="nav-side">
-            <li>
-                <button class="nav-side-tools notifications-btn">
-                    <i class="hn hn-envelope-solid"></i>
-                    <span>Correo</span>
-                    <i class="hn hn-angle-left tool-pointer"></i>
-                </button>
-            </li>
-            <li>
-                <a href="/src/pages/index/index.html" class="nav-side-tools home-link">
-                    <i class="hn hn-home-solid"></i>
-                    <span>Inicio</span>
-                    <i class="hn hn-angle-left tool-pointer"></i>
-                </a>
-            </li>
-            <li>
-                <button class="nav-side-tools toggle-nav-btn">
-                    <i class="hn hn-play-solid"></i>
-                    <span>Menú</span>
-                    <i class="hn hn-angle-left tool-pointer"></i>
-                </button>
-            </li>
-            <li>
-                <button class="nav-side-tools site-settings-btn">
-                    <i class="hn hn-cog-solid"></i>
-                    <span>Ajustes</span>
-                    <i class="hn hn-angle-left tool-pointer"></i>
-                </button>
-            </li>
-            <li>
-                <a href="#" class="nav-side-tools logout-link">
-                    <i class="hn hn-logout-solid"></i>
-                    <span>Salir</span>
-                    <i class="hn hn-angle-left tool-pointer"></i>
-                </a>
-            </li>
-        </ul>
+<!-- COMPONENTE: BARRA DE NAVEGACIÓN -->
 
-        <main class="nav-main">
-            <header class="nav-main-header">
-                <a href="#" class="user-image">
-                    <img src="/public/imgs/foto-usuario-predeterminada.png" alt="Foto de perfil">
-                </a>
-                <span class="user-tier">Moderador</span>
-                <span class="user-alias">Leo</span>
-                <a href="#" class="user-name">@leonel-bautista-2024</a>
-            </header>
+<link rel="stylesheet" href="/node_modules/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+<link rel="stylesheet" href="/src/components/navbar/navbar.css">
 
-            <section class="nav-main-body">
-                <a href="/src/pages/games-list/games.html" class="nav-main-links games-link">
-                    <i class="hn hn-save-solid"></i>
-                    <span>Lista de juegos</span>
-                </a>
-                <a href="#" class="nav-main-links downloads-link">
-                    <i class="hn hn-download-solid"></i>
-                    <span>Descargas</span>
-                </a>
-                <a href="#" class="nav-main-links account-settings-link">
-                    <i class="hn hn-user-solid"></i>
-                    <span>Ajustes de cuenta</span>
-                </a>
-                <a href="#" class="nav-main-links discussions-link">
-                    <i class="hn hn-comments-solid"></i>
-                    <span>Discusiones</span>
-                </a>
-                <a href="#" class="nav-main-links about-link">
-                    <i class="hn hn-info-circle-solid"></i>
-                    <span>Acerca de</span>
-                </a>
-                <a href="#" class="nav-main-links news-link">
-                    <i class="hn hn-bullhorn-solid"></i>
-                    <span>Novedades</span>
-                </a>
-            </section>
-        </main>
-    </nav>
+<script src="/src/components/navbar/navbar.js" defer></script>
 
-    <script src="/src/components/navbar/navbar.js"></script>
-</body>
+<div class="blackout-content"></div>
+<nav class="navbar">
+    <ul class="nav-side">
+        <li>
+            <button class="nav-side-tools notifications-btn">
+                <i class="hn hn-envelope-solid"></i>
+                <span>Correo</span>
+                <i class="hn hn-angle-left tool-pointer"></i>
+            </button>
+        </li>
+        <li>
+            <a href="#" class="nav-side-tools home-link">
+                <i class="hn hn-home-solid"></i>
+                <span>Inicio</span>
+                <i class="hn hn-angle-left tool-pointer"></i>
+            </a>
+        </li>
+        <li>
+            <button class="nav-side-tools toggle-nav-btn">
+                <i class="hn hn-play-solid"></i>
+                <span>Menú</span>
+                <i class="hn hn-angle-left tool-pointer"></i>
+            </button>
+        </li>
+        <li>
+            <button class="nav-side-tools site-settings-btn">
+                <i class="hn hn-cog-solid"></i>
+                <span>Ajustes</span>
+                <i class="hn hn-angle-left tool-pointer"></i>
+            </button>
+        </li>
+        <li>
+            <a href="#" class="nav-side-tools logout-link">
+                <i class="hn hn-logout-solid"></i>
+                <span>Salir</span>
+                <i class="hn hn-angle-left tool-pointer"></i>
+            </a>
+        </li>
+    </ul>
+
+    <main class="nav-main">
+        <header class="nav-main-header">
+            <a href="#" class="user-image">
+                <img src="/public/imgs/foto-usuario-predeterminada.png" alt="Foto de perfil">
+            </a>
+            <span class="user-tier">Moderador</span>
+            <span class="user-alias">Leo</span>
+            <a href="#" class="user-name">@leonel-bautista-2024</a>
+        </header>
+
+        <section class="nav-main-body">
+            <a href="/games/games.html" class="nav-main-links games-link">
+                <i class="hn hn-save-solid"></i>
+                <span>Lista de juegos</span>
+            </a>
+            <a href="#" class="nav-main-links downloads-link">
+                <i class="hn hn-download-solid"></i>
+                <span>Descargas</span>
+            </a>
+            <a href="#" class="nav-main-links account-settings-link">
+                <i class="hn hn-user-solid"></i>
+                <span>Ajustes de cuenta</span>
+            </a>
+            <a href="#" class="nav-main-links discussions-link">
+                <i class="hn hn-comments-solid"></i>
+                <span>Discusiones</span>
+            </a>
+            <a href="#" class="nav-main-links about-link">
+                <i class="hn hn-info-circle-solid"></i>
+                <span>Acerca de</span>
+            </a>
+            <a href="#" class="nav-main-links news-link">
+                <i class="hn hn-bullhorn-solid"></i>
+                <span>Novedades</span>
+            </a>
+        </section>
+    </main>
+</nav>

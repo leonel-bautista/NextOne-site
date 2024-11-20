@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+    <link rel="stylesheet" href="/games.css">
+    
+    <script src="/games.js" defer></script>
+
+    <title>Admin: Juegos</title>
+
+</head>
+<body>
+    <main>
+        <header class="main-header">
+            <button class="selected-btn active-all-btn">
+                <i class="hn hn-octagon-check"></i>
+                <span>Marcar como activos</span>
+            </button>
+            <button class="selected-btn inactive-all-btn">
+                <i class="hn hn-octagon-times"></i>
+                <span>Marcar como inactivos</span>
+            </button>
+            <button class="selected-btn delete-all-btn">
+                <i class="hn hn-trash-alt"></i>
+                <span>Eliminar</span>
+            </button>
+
+            <search>
+                <form class="search-form">
+                    <input type="text" class="search-box" placeholder="Buscar...">
+                    <button type="submit" class="search-btn">
+                        <i class="hn hn-search"></i>
+                    </button>
+                </form>
+            </search>
+
+            <button class="add-new-btn">
+                <i class="hn hn-plus-solid"></i>
+                <span>Agregar juego</span>
+            </button>
+        </header>
+
+        <section class="main-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nro</th>
+                        <th>Imágen</th>
+                        <th>Nombre</th>
+                        <th>Desarrollo</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <dialog data-modal>
+            <header class="modal-header">
+                <h2>Formulario alta de juego</h2>
+                <button class="modal-btn close-modal-btn" autofocus>
+                    <i class="hn hn-times-solid"></i>
+                </button>
+            </header>
+
+            <form class="modal-form">
+                <fieldset>
+                    <legend>Imágen</legend>
+                    <div>
+                        <label for="gameImg">
+                            <input type="file" id="gameImg" required>
+                            <i class="hn hn-edit-solid"></i>
+                        </label>
+                        <img src="/imgs/game-default-image.jpg" alt="Imágen del juego">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Detalles</legend>
+                    <label for="gameName">
+                        <span>Nombre</span>
+                        <input type="text" id="gameName" required>
+                    </label>
+
+                    <label for="gameLaunch">
+                        <span>Fecha de lanzamiento</span>
+                        <input type="date" id="gameLaunch" required>
+                    </label>
+
+                    <label for="gameDeveloper">
+                        <span>Desarrolladora</span>
+                        <select id="gameDeveloper" required>
+                            <option value="" selected>-----</option>
+                            <option value="1">Team17</option>
+                            <option value="2">Valve</option>
+                            <option value="3">Mediatonic</option>
+                            <option value="4">Codemasters</option>
+                            <option value="5">Psyonix</option>
+                            <option value="6">Saber Interactive</option>
+                        </select>
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Estado</legend>
+                    <label for="active-status">
+                        <input type="radio" name="gameStatus" id="active-status" value="active" checked>
+                        <span>Activo</span>
+                    </label>
+                    <label for="inactive-status">
+                        <input type="radio" name="gameStatus" id="inactive-status" value="inactive">
+                        <span>Inactivo</span>
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <legend>Descripción</legend>
+                    <label for="gameDescription">
+                        <textarea name="" id="gameDescription" required></textarea>
+                    </label>
+                </fieldset>
+
+                <footer>
+                    <button type="reset" class="modal-btn clean-modal-btn">
+                        <i class="hn hn-refresh-solid"></i>
+                    </button>
+                    <button type="button" class="modal-btn cancel-btn" formmethod="dialog">Cancelar</button>
+                    <button type="submit" class="modal-btn save-modal-btn">Guardar</button>
+                </footer>
+            </form>
+        </dialog>
+    </main>
+</body>
+</html>
