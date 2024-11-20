@@ -41,12 +41,21 @@ app.use(express.static(__dirname + '/src/uploads'));
 
 
 // página de login
+app.use(express.static(__dirname + '/src/pages/login'));
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/src/pages/login/login.html');
+})
+// página de registro
+app.use(express.static(__dirname + '/src/pages/register'));
+app.get('/register', (req, res) => {
+    res.sendFile(__dirname + '/src/pages/register/register.html');
+})
 
 // página de inicio
-// app.use(express.static(__dirname + '/src/pages/index'))
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + '/src/pages/index/index.html');
-// });
+app.use(express.static(__dirname + '/src/pages/index'))
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/src/pages/index/index.html');
+});
 
 // administración de juegos
 app.use(express.static(__dirname + '/src/pages/admin/games'));
@@ -58,6 +67,9 @@ app.get('/admin/games', (req, res) => {
 // API
 import {gamesRoutes} from "./src/modules/games/games.routes.js";
 app.use('/api/games', gamesRoutes);
+
+import {usersRoutes} from "./src/modules/users/users.routes.js";
+app.use('/api/users', usersRoutes);
 
 
 // SERVER
