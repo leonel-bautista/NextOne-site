@@ -1,4 +1,7 @@
 #NODE.JS
 node_modules
-uploads
 .env
+
+# carpetas de imagenes
+games-images
+users-pictures

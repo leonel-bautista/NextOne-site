@@ -9,18 +9,18 @@ const controller = require('./roles.controller')
 
 // MÉTODO GET
 // para todos los cargos
-router.get('/db-table-raw', controller.showEveryRole);
+router.get('/', controller.showEveryRole);
 // para un solo cargo
-router.get('/db-table-raw/:role_id', controller.showOneRole);
+router.get('/:role_id', controller.showOneRole);
 
 // MÉTODO POST
-router.post('/db-table-raw', controller.storeRole);
+router.post('/', controller.storeRole);
 
 // MÉTODO PUT
-router.put('/db-table-raw/:role_id', controller.updateRole);
+router.put('/:role_id', controller.updateRole);
 
 // MÉTODO DELETE
-router.delete('/db-table-raw/:role_id', controller.removeRole);
+router.delete('/:role_id', controller.removeRole);
 
 
 // EXPORTAR

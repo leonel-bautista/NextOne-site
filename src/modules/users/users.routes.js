@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 const controller = require('./users.controller');
-const authMiddleware = require('/@middleware/auth.middleware');
+const authMiddleware = require('../../middleware/auth.middleware');
 
 
 // MULTER
@@ -14,10 +14,10 @@ const path = require('node:path');
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, 'uploads');
+        callback(null, 'src/uploads/users-pictures');
     },
     filename: (req, file, callback) => {
-        callback(null, Date.now() + path.extname(file.originalname));
+        callback(null, "u-" + Date.now() + path.extname(file.originalname));
     },
 });
 
@@ -47,7 +47,7 @@ router.get('/', controller.showEveryUser);
 // para un solo usuario
 router.get('/:user_id', controller.showOneUser);
 // autenticación
-router.get('/protected', authMiddleware, (req, res) => {
+router.get('/auth/protected', authMiddleware, (req, res) => {
     res.status(200).send(`Hola, Usuario N°${req.user_id}`);
 })
 

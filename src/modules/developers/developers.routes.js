@@ -9,18 +9,18 @@ const controller = require('./developers.controller');
 
 // MÉTODO GET
 // para todas las desarrolladoras
-router.get('/db-table-raw', controller.showEveryDeveloper);
+router.get('/', controller.showEveryDeveloper);
 // para una solo desarrolladora
-router.get('/db-table-raw/:developer_id', controller.showOneDeveloper);
+router.get('/:developer_id', controller.showOneDeveloper);
 
 // MÉTODO POST
-router.post('/db-table-raw', controller.storeDeveloper);
+router.post('/', controller.storeDeveloper);
 
 // MÉTODO PUT
-router.put('/db-table-raw/:developer_id', controller.updateDeveloper);
+router.put('/:developer_id', controller.updateDeveloper);
 
 // MÉTODO DELETE
-router.delete('/db-table-raw/:developer_id', controller.removeDeveloper);
+router.delete('/:developer_id', controller.removeDeveloper);
 
 
 // EXPORTAR

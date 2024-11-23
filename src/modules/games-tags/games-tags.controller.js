@@ -1,7 +1,7 @@
 
 ////////////// CONTROLADORES DEL MÓDULO "JUEGO-ETIQUETA" ////
 
-const db = require('/@database/db');
+const db = require('../../database/db');
 
 
 // METODO GET

@@ -11,21 +11,21 @@ app.use(express.json());
 
 // RUTAS
 // tablas relacionadas a JUEGOS
-app.use('/games', require('/@modules/games/games.routes'));
-app.use('/tags', require('/@modules/tags/tags.routes'));
-app.use('/platforms', require('/@modules/platforms/platforms.routes'));
-app.use('/developers', require('/@modules/developers/developers.routes'));
+app.use('/games', require('./src/modules/games/games.routes'));
+app.use('/tags', require('./src/modules/tags/tags.routes'));
+app.use('/platforms', require('./src/modules/platforms/platforms.routes'));
+app.use('/developers', require('./src/modules/developers/developers.routes'));
 // tablas intermedias
-app.use('/games-tags', require('/@modules/games-tags/games-tags.routes'));
-app.use('/games-platforms', require('/@modules/games-platforms/games-platforms.routes'));
+app.use('/games-tags', require('./src/modules/games-tags/games-tags.routes'));
+app.use('/games-platforms', require('./src/modules/games-platforms/games-platforms.routes'));
 
 // tablas relacionadas a USUARIOS
-app.use('/users', require('/@modules/users/users.routes'));
-app.use('/tiers', require('/@modules/tiers/tiers.routes'));
+app.use('/users', require('./src/modules/users/users.routes'));
+app.use('/tiers', require('./src/modules/tiers/tiers.routes'));
 // tablas de administradores
-app.use('/admins', require('/@modules/admins/admins.routes'));
-app.use('/roles', require('/@modules/roles/roles.routes'));
-app.use('/areas', require('/@modules/areas/areas.routes'));
+app.use('/admins', require('./src/modules/admins/admins.routes'));
+app.use('/roles', require('./src/modules/roles/roles.routes'));
+app.use('/areas', require('./src/modules/areas/areas.routes'));
 
 
 // raíz

@@ -1,7 +1,7 @@
 
 ////////////// CONTROLADORES DEL MÓDULO "ETIQUETAS" ////
 
-const db = require('/@database/db');
+const db = require('../../database/db');
 
 
 // MÉTODO GET

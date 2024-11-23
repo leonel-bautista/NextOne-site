@@ -1,7 +1,7 @@
 
 ////////////// CONTROLADORES DEL MÓDULO "USUARIOS" ////
 
-const db = require('/@database/db');
+const db = require('../../database/db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -59,7 +59,7 @@ const registerUser = (req, res) => {
 
         const userInfo = {mensaje: "(✔) Usuario registrado con éxito!",
                           user_id: result.insertId,
-                          ...req.file,
+                          user_image: req.file.filename,
                           ...req.body,
                           token: token};
         res.status(201).send(userInfo);
@@ -86,7 +86,7 @@ const loginUser = (req, res) => {
                                          token: null});
         }
 
-        const token = jwt.sign({user_id: result.user_id}, process.env.SECRET_KEY, {
+        const token = jwt.sign({user_id: result[0].user_id}, process.env.SECRET_KEY, {
             expiresIn: "1h"
         });
         
@@ -124,7 +124,7 @@ const updateUser = (req, res) => {
 
         const userInfo = {mensaje: "(✔) Usuario actualizado con éxito!",
                           ...req.params,
-                          ...req.file,
+                          user_image: req.file.filename,
                           ...req.body,
                           token: token};
         res.status(201).send(userInfo);

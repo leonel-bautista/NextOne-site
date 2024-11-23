@@ -9,18 +9,18 @@ const controller = require('./areas.controller');
 
 // MÉTODO GET
 // para todas las areas
-router.get('/db-table-raw', controller.showEveryArea);
+router.get('/', controller.showEveryArea);
 // para una sola area
-router.get('/db-table-raw/:area_id', controller.showOneArea);
+router.get('/:area_id', controller.showOneArea);
 
 // MÉTODO POST
-router.post('/db-table-raw', controller.storeArea);
+router.post('/', controller.storeArea);
 
 // MÉTODO PUT
-router.put('/db-table-raw/:area_id', controller.updateArea);
+router.put('/:area_id', controller.updateArea);
 
 // MÉTODO DELETE
-router.delete('/db-table-raw/:area_id', controller.removeArea);
+router.delete('/:area_id', controller.removeArea);
 
 
 // EXPORTAR

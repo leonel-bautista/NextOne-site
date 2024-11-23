@@ -9,18 +9,18 @@ const controller = require('./tiers.controller');
 
 // MÉTODO GET
 // para todos los niveles
-router.get('/db-table-raw', controller.showEveryTier);
+router.get('/', controller.showEveryTier);
 // para un solo nivel
-router.get('/db-table-raw/:tier_id', controller.showOneTier);
+router.get('/:tier_id', controller.showOneTier);
 
 // MÉTODO POST
-router.post('/db-table-raw', controller.storeTier);
+router.post('/', controller.storeTier);
 
 // MÉTODO PUT
-router.put('/db-table-raw/:tier_id', controller.updateTier);
+router.put('/:tier_id', controller.updateTier);
 
 // MÉTODO DELETE
-router.delete('/db-table-raw/:tier_id', controller.removeTier);
+router.delete('/:tier_id', controller.removeTier);
 
 
 // EXPORTAR

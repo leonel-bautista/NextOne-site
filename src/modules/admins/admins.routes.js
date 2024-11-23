@@ -4,23 +4,23 @@
 const express = require('express');
 const router = express.Router();
 
-const controller = require('/@modules/admins/admins.controller');
+const controller = require('./admins.controller');
 
 
 // MÉTODO GET
 // para todos los admins
-router.get('/db-table-raw', controller.showEveryAdmin);
+router.get('/', controller.showEveryAdmin);
 // para un solo admin
-router.get('/db-table-raw/:admin_id', controller.showOneAdmin);
+router.get('/:admin_id', controller.showOneAdmin);
 
 // MÉTODO POST
-router.post('/db-table-raw', controller.storeAdmin);
+router.post('/', controller.storeAdmin);
 
 // MÉTODO PUT
-router.put('/db-table-raw/:admin_id', controller.updateAdmin);
+router.put('/:admin_id', controller.updateAdmin);
 
 // MÉTODO DELETE
-router.delete('/db-table-raw/:admin_id', controller.removeAdmin);
+router.delete('/:admin_id', controller.removeAdmin);
 
 
 // EXPORTAR

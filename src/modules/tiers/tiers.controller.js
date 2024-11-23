@@ -1,7 +1,7 @@
 
 ////////////// CONTROLADORES DEL MÓDULO "NIVELES" ////
 
-const db = require('/@database/db');
+const db = require('../../database/db');
 
 
 // MÉTODO GET
