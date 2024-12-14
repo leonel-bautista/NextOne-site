@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
     <link rel="stylesheet" href="/login.css">
+    
+    <script src="/login.js" defer></script>
 
-    <title>Login</title>
+    <title>Iniciar sesión</title>
 
 </head>
 <body>
-    <header class="page-header">
-        <a href="index.html" class="home-btn">
+    <header class="nav-header">
+        <a href="/">
             <i class="hn hn-home-solid"></i>
         </a>
     </header>
 
+    <aside>
+        <div>
+            <span>¿No tienes cuenta?</span>
+            <a href="/register">Crear cuenta</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque reprehenderit ratione optio consequuntur perferendis libero rem, qui quasi nam vitae.</p>
+        </div>
+    </aside>
+
     <main>
         <header>
-            <h1>Ingrese sus datos</h1>
+            <h1>Inicio de sesión</h1>
         </header>
 
         <form>
-            <label for="usernameInput">
-                <span>Usuario</span>
-                <input type="text" id="usernameInput">
+            <label for="userName">
+                <span>Nombre de usuario</span>
+                <input type="text" id="userName">
             </label>
-            <label for="passwordInput">
+            <label for="userPassword">
                 <span>Contraseña</span>
-                <input type="password" id="passwordInput">
+                <input type="password" id="userPassword">
             </label>
 
             <footer>
-                <button type="submit">Ingresar</button>
-
-                <span>¿No tienes cuenta?</span>
-                <a href="register.html" class="register-btn">Regístrate</a>
+                <button type="submit">
+                    Iniciar sesión
+                    <div><i class="hn hn-spinner"></i></div>
+                </button>
+                <span class="message"></span>
             </footer>
         </form>
     </main>

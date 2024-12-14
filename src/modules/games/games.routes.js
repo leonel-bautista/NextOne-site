@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
         callback(null, 'src/uploads/games-images');
     },
     filename: (req, file, callback) => {
-        callback(null, Date.now() + path.extname(file.originalname));
+        callback(null, "g-" + Date.now() + path.extname(file.originalname));
     },
 });
 

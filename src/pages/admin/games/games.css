@@ -238,13 +238,14 @@ main table{
     height: 20px;
 }
 .game-img{
-    width: clamp(120px, 100%, 180px);
+    width: 100%;
     height: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 0.3em;
 
     display: block;
     text-align: center;
+    align-content: center;
 }
 .game-name{
     font-size: 1.1rem;

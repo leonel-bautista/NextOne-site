@@ -8,15 +8,15 @@ import {methods as controller} from './users.controller.js'
 
 
 // MULTER
-import multer from 'multer';
 import path from 'node:path';
+import multer from 'multer';
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, 'src/uploads/user-images');
+        callback(null, 'src/uploads/users-pictures');
     },
     filename: (req, file, callback) => {
-        callback(null, Date.now() + path.extname(file.originalname));
+        callback(null, "u-" + Date.now() + path.extname(file.originalname));
     },
 });
 
@@ -45,16 +45,9 @@ const upload = multer({
 router.get('/', controller.showEveryUser);
 // para un solo usuario
 router.get('/:user_id', controller.showOneUser);
-// autenticación
-// router.get('/protected', authMiddleware, (req, res) => {
-//     res.status(200).send(`Hola, Usuario N°${req.user_id}`);
-// })
 
 // MÉTODO POST
-// registrar una cuenta
-router.post('/register', upload.single('user_image'), controller.registerUser);
-// ingresar a una cuenta
-router.post('/login', controller.loginUser);
+router.post('/', upload.single('user_image'), controller.storeUser);
 
 // MÉTODO PUT
 router.put('/:user_id', upload.single('user_image'), controller.updateUser);

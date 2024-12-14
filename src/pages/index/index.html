@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+    <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
     <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/navbar/navbar.css">
 
     <title>Inicio</title>
 
 </head>
 <body>
-    <nav id="navigation">
+    <aside id="navigation">
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
             $.get('/navbar/navbar.html', function(data){
                 $("#navigation").replaceWith(data);
             });
         </script>
-    </nav>
+    </aside>
 
     <main class="index-main">
         <section class="frontPage">
@@ -41,8 +43,7 @@
 
         <section class="main-content">
             <h1>
-                Por ahora solo funciona el listado de juegos
-                mediante local storage 👍
+                👍
             </h1>
         </section>
     </main>

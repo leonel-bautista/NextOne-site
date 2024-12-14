@@ -13,6 +13,15 @@
 
 </head>
 <body>
+    <header id="panel">
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $.get('/admin/panel.html', function(data){
+                $("#panel").replaceWith(data);
+            });
+        </script>
+    </header>
+
     <main>
         <header class="main-header">
             <button class="selected-btn active-all-btn">
@@ -75,7 +84,7 @@
                     <legend>Imágen</legend>
                     <div>
                         <label for="gameImg">
-                            <input type="file" id="gameImg" required>
+                            <input type="file" id="gameImg">
                             <i class="hn hn-edit-solid"></i>
                         </label>
                         <img src="/imgs/game-default-image.jpg" alt="Imágen del juego">

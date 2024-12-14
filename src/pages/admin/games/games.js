@@ -7,6 +7,8 @@ const modalForm = document.querySelector(".modal-form");
 const fileInput = modalForm.querySelector("input[type=file]")
 const image = modalForm.querySelector("img")
 
+const url = "http://localhost:3080";
+
 
 // evento al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,7 +51,7 @@ modalForm.addEventListener('submit', (e) => {
 
     // if(modal.classList.)
 
-    console.log(gameID)
+    // console.log(gameID)
 
 
 
@@ -60,7 +62,7 @@ modalForm.addEventListener('submit', (e) => {
         putGame(gameID, e);
     }
 
-    getGames();
+    // getGames();
 
     modal.close();
     refreshForm();
@@ -104,7 +106,7 @@ table.addEventListener('click', async(e) => {
 
 // MÉTODOS API
 async function getGames(){
-    const res = await fetch("http://localhost:3080/api/games")
+    const res = await fetch(`${url}/api/games`)
 
     const gamesdata = await res.json();
     const tbody = table.querySelector('tbody');
@@ -112,16 +114,18 @@ async function getGames(){
 
     gamesdata.forEach((game) => {
         let gameStatus = "";
-        let statusIcon = "";
+        let gameImage = "";
 
-        if(game.status == "active"){
-            gameStatus = "Activo";
-            statusIcon = "hn-eye-cross-solid";
+        game.status == "active" ? gameStatus = "Activo" : gameStatus = "Inactivo";
+
+        if(!game.image){
+            fileFolder = "/imgs/"
+            gameImage = 'game-default-image.jpg';
+        } else{
+            fileFolder = "/games-images/"
+            gameImage = game.image;
         }
-        if(game.status == "inactive"){
-            gameStatus = "Inactivo";
-            statusIcon = "hn-eye-solid";
-        }
+        console.log(gameImage)
 
         const tableRow = `
             <tr data-id="${game.id}">
@@ -130,7 +134,7 @@ async function getGames(){
                 </td>
                 <td>${game.id}</td>
                 <td>
-                    <img class="game-img" src="/games-images/${game.image}" alt="Imágen del juego">
+                    <img class="game-img" src="${fileFolder+gameImage}" alt="Portada de ${game.name}">
                 </td>
                 <td>
                     <span class="game-name">${game.name}</span>
@@ -145,7 +149,7 @@ async function getGames(){
                 </td>
                 <td>
                     <button class="table-btn toggle-status-btn">
-                        <i class="hn ${statusIcon}"></i>
+                        <i class="hn hn-eye-solid"></i>
                     </button>
                     <button class="table-btn edit-btn">
                         <i class="hn hn-pen-solid"></i>
@@ -162,7 +166,7 @@ async function getGames(){
 }
 
 async function getOneGame(id){
-    const res = await fetch(`http://localhost:3080/api/games/${id}`, {
+    const res = await fetch(`${url}/api/games/${id}`, {
         params: JSON.stringify({
             game_id: id
         })
@@ -188,15 +192,10 @@ async function postGame(e){
     formData.append('game_description', e.target.gameDescription.value)
     formData.append('status', e.target.gameStatus.value)
 
-    const res = await fetch("http://localhost:3080/api/games", {
+    await fetch("http://localhost:3080/api/games", {
         method: 'POST',
         body: formData
     })
-
-    const resJson = await res.json();
-    if(resJson.redirect){
-        window.location.href = resJson.redirect;
-    }
 }
 
 async function putGame(id, e){
@@ -208,18 +207,13 @@ async function putGame(id, e){
     formData.append('game_description', e.target.gameDescription.value)
     formData.append('status', e.target.gameStatus.value)
 
-    const res = await fetch(`http://localhost:3080/api/games/${id}`, {
+    await fetch(`http://localhost:3080/api/games/${id}`, {
         method: 'PUT',
         params: JSON.stringify({
             game_id: id
         }),
         body: formData
     })
-
-    const resJson = await res.json();
-    if(resJson.redirect){
-        window.location.href = resJson.redirect;
-    }
 }
 
 // async function patchGame(id){
@@ -227,17 +221,12 @@ async function putGame(id, e){
 // }
 
 async function deleteGame(id){
-    const res = await fetch(`http://localhost:3080/api/games/${id}`, {
+    await fetch(`${url}/api/games/${id}`, {
         method: 'DELETE',
         params: JSON.stringify({
             game_id: id
         })
     })
-
-    const resJson = await res.json();
-    if(resJson.redirect){
-        window.location.href = resJson.redirect;
-    }
 }
 
 
