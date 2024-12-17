@@ -43,7 +43,7 @@ main{
     border-radius: 0.2em;
     border: 0.2em outset rgba(0, 0, 0, 0.05);
 
-    top: 0;
+    top: 60px;
     position: sticky;
     display: flex;
     justify-content: center;
@@ -167,7 +167,7 @@ main table{
 
     thead{
         height: fit-content;
-        top: 90px;
+        top: 150px;
         position: sticky;
 
         backdrop-filter: blur(20px);
@@ -365,6 +365,7 @@ main dialog{
 
         color: greenyellow;
         background-image: linear-gradient(
+            to bottom left,
             rgb(26, 25, 25),
             black
             );
@@ -372,6 +373,15 @@ main dialog{
 
         z-index: 20;
 
+        h2{
+            display: flex;
+            gap: 0.2em;
+        }
+        span{
+            background: rgba(242, 188, 59, 0.27);
+            border-radius: 0.2em;
+            padding: 0 0.3em;
+        }
         .close-modal-btn{
             height: 30px;
             width: 30px;

@@ -1,131 +1,48 @@
 const table = document.querySelector("table");
+const searchInput = document.querySelector(".search-box")
 
 const modal = document.querySelector("dialog");
 const openFormBtn = document.querySelector(".add-new-btn");
 const modalForm = document.querySelector(".modal-form");
 
-const fileInput = modalForm.querySelector("input[type=file]")
-const image = modalForm.querySelector("img")
+const imageInput = modalForm.querySelector("img");
+const gameImg = modalForm.querySelector("#gameImg");
+const gameName = modalForm.querySelector("#gameName");
+const gameLaunch = modalForm.querySelector("#gameLaunch");
+const gameDeveloper = modalForm.querySelector("#gameDeveloper");
+const gameDescription = modalForm.querySelector("#gameDescription");
+const gameStatus = modalForm.querySelector('input[name=gameStatus]:checked');
 
-const url = "http://localhost:3080";
-
-
-// evento al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    getGames();
-})
-
-
-// evento para abrir y cerrar la pantalla de alta
-openFormBtn.addEventListener('click', () => {
-    if(modal.classList.contains("edit-mode")){
-        refreshForm();
-        modal.showModal();
-    }
-    else{
-        modal.showModal();
-        const modalTitle = modal.querySelector("h2");
-        modalTitle.innerHTML = "Formulario alta de juego";
-    }
-    modal.showModal();
-})
-modal.addEventListener('click', async (e) => {
-    if(e.target.classList.contains('cancel-btn')){
-        modal.close();
-        refreshForm();
-    }
-    if(e.target.classList.contains('close-modal-btn')){
-        if(modal.classList.contains("edit-mode")){
-            modal.close();
-            refreshForm();
-        }
-        else{
-            modal.close();
-        }
-    }
-})
-
-// evento al guardar los cambios del formulario de alta
-modalForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // if(modal.classList.)
-
-    // console.log(gameID)
-
-
-
-    if(!modal.classList.contains("edit-mode")){
-        postGame(e);
-    }
-    else{
-        putGame(gameID, e);
-    }
-
-    // getGames();
-
-    modal.close();
-    refreshForm();
-})
-
-table.addEventListener('click', async(e) => {
-    e.preventDefault();
-
-    // if(e.target.classList.contains('toggle-status-btn')){
-    //     const gameID = e.target.closest('tr').dataset.id;
-
-    //     patchGameStatus(gameID)
-
-    //     getGames();
-    // }
-
-    if(e.target.classList.contains('edit-btn')){
-        const gameID = e.target.closest('tr').dataset.id;
-
-        modalForm.reset();
-
-        modal.classList.add("edit-mode");
-        getOneGame(gameID);
-        const modalTitle = modal.querySelector("h2");
-        modalTitle.innerHTML = `Formulario modificación de juego | ID: ${gameID}`;
-
-        modal.showModal();
-    }
-
-    if(e.target.classList.contains('delete-btn')){
-        const gameID = e.target.closest('tr').dataset.id;
-
-        if(confirm(`Está seguro de eliminar el juego (ID: ${gameID})?`)){
-            deleteGame(gameID);
-
-            getGames();
-        }
-    }
-});
+const url = "https://localhost:3080";
 
 
 // MÉTODOS API
-async function getGames(){
+const placeGames = async (searched) => {
     const res = await fetch(`${url}/api/games`)
-
     const gamesdata = await res.json();
-    const tbody = table.querySelector('tbody');
+    
+    const tbody = table.querySelector("tbody");
     tbody.innerHTML = "";
 
-    gamesdata.forEach((game) => {
-        let gameStatus = "";
-        let gameImage = "";
+    let data;
+    searched ? data = searched : data = gamesdata;
 
-        game.status == "active" ? gameStatus = "Activo" : gameStatus = "Inactivo";
+    data.forEach((game) => {
+        if(game.status === "active"){
+            statusText = "Activo";
+            statusIcon = "hn-eye-cross-solid";
+        } else{
+            statusText = "Inactivo";
+            statusIcon = "hn-eye-solid";
+        }
 
         if(!game.image){
-            fileFolder = "/imgs/"
+            fileFolder = "/imgs/";
             gameImage = 'game-default-image.jpg';
         } else{
-            fileFolder = "/games-images/"
+            fileFolder = "/games-images/";
             gameImage = game.image;
         }
-        console.log(gameImage)
 
         const tableRow = `
             <tr data-id="${game.id}">
@@ -145,11 +62,11 @@ async function getGames(){
                     <span class="game-developer">${game.developer}</span>
                 </td>
                 <td>
-                    <span class="game-status ${game.status}">${gameStatus}</span>
+                    <span class="game-status ${game.status}">${statusText}</span>
                 </td>
                 <td>
                     <button class="table-btn toggle-status-btn">
-                        <i class="hn hn-eye-solid"></i>
+                        <i class="hn ${statusIcon}"></i>
                     </button>
                     <button class="table-btn edit-btn">
                         <i class="hn hn-pen-solid"></i>
@@ -165,68 +82,93 @@ async function getGames(){
     })
 }
 
-async function getOneGame(id){
-    const res = await fetch(`${url}/api/games/${id}`, {
-        params: JSON.stringify({
-            game_id: id
-        })
-    })
-    const gamesdata = await res.json();
+const getGame = async (id) => {
+    const res = await fetch(`${url}/api/games/${id}`)
+    const game = await res.json();
 
-    image.src = `/games-images/${gamesdata[0].image}`;
-    // modalForm.querySelector("#gameImg").value = gamesdata[0].image;
-    modalForm.querySelector("#gameName").value = gamesdata[0].name;
-    // modalForm.querySelector("#gameLaunch").value = gamesdata[0].launch_date;
-    modalForm.querySelector("#gameDeveloper").value = gamesdata[0].developer;
-    if(gamesdata[0].status == "active") modalForm.querySelector("#active-status").checked = true;
-    if(gamesdata[0].status == "inactive") modalForm.querySelector("#inactive-status").checked = true;
-    modalForm.querySelector("#gameDescription").value = gamesdata[0].description;
+    if(!game.image){
+        fileFolder = "/imgs/";
+        gameImage = 'game-default-image.jpg';
+    } else{
+        fileFolder = "/games-images/";
+        gameImage = game.image;
+    }
+
+    modalForm.dataset.gameId = game.id;
+
+    imageInput.src = `${fileFolder+gameImage}`;
+    gameImg.dataset.originalImage = game.image || '';
+    gameName.value = game.name || '';
+    gameLaunch.value = game.launch_date ? new Date(game.launch_date).toISOString().split('T')[0] : '';
+    gameDeveloper.value = game.developer || '';
+    if(game.status == "active") modalForm.querySelector("#active-status").checked = true;
+    if(game.status == "inactive") modalForm.querySelector("#inactive-status").checked = true;
+    gameDescription.value = game.description || '';
 }
 
-async function postGame(e){
+const saveEdit = async () => {
+    const gameId = modalForm.dataset.gameId;
+    const originalImg = gameImg.dataset.originalImage;
     const formData = new FormData();
-    formData.append('game_image', e.target.gameImg.files[0])
-    formData.append('game_name', e.target.gameName.value)
-    formData.append('launch_date', e.target.gameLaunch.value)
-    formData.append('developer_id', e.target.gameDeveloper.value)
-    formData.append('game_description', e.target.gameDescription.value)
-    formData.append('status', e.target.gameStatus.value)
 
-    await fetch("http://localhost:3080/api/games", {
+    if(gameImg.files[0]){
+        formData.append('game_image', gameImg.files[0]);
+    } else{
+        formData.append('game_image', originalImg);
+    }
+    formData.append('game_name', gameName.value);
+    formData.append('launch_date', gameLaunch.value);
+    formData.append('developer_id', gameDeveloper.value);
+    formData.append('game_description', gameDescription.value);
+    formData.append('status', gameStatus.checked ? "active" : "inactive");
+
+    await fetch(`${url}/api/games/${gameId}`, {
+        method: 'PUT',
+        body: formData
+    });
+};
+
+const saveNewGame = async () => {
+    const formData = new FormData();
+    formData.append('game_image', gameImg.files[0])
+    formData.append('game_name', gameName.value)
+    formData.append('launch_date', gameLaunch.value)
+    formData.append('developer_id', gameDeveloper.value)
+    formData.append('game_description', gameDescription.value)
+    formData.append('status', gameStatus.checked ? "active" : "inactive")
+
+    await fetch(`${url}/api/games`, {
         method: 'POST',
         body: formData
     })
 }
 
-async function putGame(id, e){
-    const formData = new FormData();
-    formData.append('game_image', e.target.gameImg.files[0])
-    formData.append('game_name', e.target.gameName.value)
-    formData.append('launch_date', e.target.gameLaunch.value)
-    formData.append('developer_id', e.target.gameDeveloper.value)
-    formData.append('game_description', e.target.gameDescription.value)
-    formData.append('status', e.target.gameStatus.value)
+const toggleGameStatus = async (id, currentStatus) => {
+    const newStatus = currentStatus === "active" ? "inactive" : "active";
 
-    await fetch(`http://localhost:3080/api/games/${id}`, {
-        method: 'PUT',
-        params: JSON.stringify({
-            game_id: id
-        }),
-        body: formData
+    await fetch(`${url}/api/games/${id}/status`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            status: newStatus
+        })
     })
 }
 
-// async function patchGame(id){
-
-// }
-
-async function deleteGame(id){
+const deleteGame = async (id) => {
     await fetch(`${url}/api/games/${id}`, {
-        method: 'DELETE',
-        params: JSON.stringify({
-            game_id: id
-        })
+        method: 'DELETE'
     })
+}
+
+// BUSCADOR
+const searchGames = async (name) => {
+    const res = await fetch(`${url}/api/games/search?name=${name}`);
+    const gamesInfo = await res.json();
+
+    placeGames(gamesInfo);
 }
 
 
@@ -242,16 +184,16 @@ const formatDate = (date) => {
     return formattedDate;
 }
 // funcion que cambia el contenedor de la imágen en tiempo real
-fileInput.onchange = function(){
-    if(fileInput.files[0].size < 1000000){   // 1MB
+gameImg.onchange = function(){
+    if(gameImg.files[0].size < 1000000){   // 1MB
         let fileReader = new FileReader();
 
         fileReader.onload = function(e){
             imgUrl = e.target.result;
-            image.src = imgUrl;
+            imageInput.src = imgUrl;
         }
 
-        fileReader.readAsDataURL(fileInput.files[0]);
+        fileReader.readAsDataURL(gameImg.files[0]);
     }
     else{
         alert("Solo se permiten imagenes con un peso menor a 1MB (megabyte)!")
@@ -260,7 +202,109 @@ fileInput.onchange = function(){
 
 const refreshForm = () => {
     modalForm.reset();
-    image.src = "/imgs/game-default-image.jpg"
+
+    imageInput.src = "/imgs/game-default-image.jpg";
+    gameImg.dataset.originalImage = "";
+    modalForm.dataset.gameId = "";
     
     modal.classList.remove("edit-mode");
 }
+
+
+// EVENTOS
+// evento al buscar juegos
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value;
+    if(searchTerm.trim() !== ''){
+        // return;
+        searchGames(searchTerm);
+    } else{
+        placeGames();
+    }
+})
+
+// evento para abrir y cerrar la pantalla de alta
+openFormBtn.addEventListener('click', () => {
+    if(modal.classList.contains("edit-mode")){
+        refreshForm();
+        modal.showModal();
+    }
+    else{
+        modal.showModal();
+
+        const modalTitle = modal.querySelector("h2");
+        modalTitle.innerHTML = "Formulario alta de juego";
+    }
+    modal.showModal();
+})
+modal.addEventListener('click', (e) => {
+    if(e.target.classList.contains('cancel-btn')){
+        modal.close();
+        refreshForm();
+    }
+    if(e.target.classList.contains('close-modal-btn')){
+        if(modal.classList.contains("edit-mode")){
+            modal.close();
+            refreshForm();
+        }
+        else{
+            modal.close();
+        }
+    }
+})
+
+// evento al guardar los cambios del formulario de alta
+modalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if(!modal.classList.contains("edit-mode")){
+        saveNewGame();
+    }
+    else{
+        saveEdit();
+    }
+
+    placeGames();
+
+    modal.close();
+    refreshForm();
+})
+
+table.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if(e.target.classList.contains('toggle-status-btn')){
+        const gameID = e.target.closest('tr').dataset.id;
+        const currentStatus = e.target.closest('tr').querySelector(".game-status").className.replace("game-status ", "");
+        console.log(currentStatus)
+        toggleGameStatus(gameID, currentStatus);
+        placeGames();
+    }
+
+    if(e.target.classList.contains('edit-btn')){
+        const gameID = e.target.closest('tr').dataset.id;
+
+        modalForm.reset();
+
+        modal.classList.add("edit-mode");
+        getGame(gameID);
+        const modalTitle = modal.querySelector("h2");
+        modalTitle.innerHTML = `Formulario modificación de juego <span data-id="${gameID}">ID ${gameID}</span>`;
+
+        modal.showModal();
+    }
+
+    if(e.target.classList.contains('delete-btn')){
+        const gameID = e.target.closest('tr').dataset.id;
+
+        if(confirm(`Está seguro de eliminar el juego (ID: ${gameID})?`)){
+            deleteGame(gameID);
+            placeGames();
+        }
+    }
+});
+
+// evento al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    placeGames();
+})

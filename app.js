@@ -50,6 +50,11 @@ app.use(express.static(__dirname + '/src/pages/index'))
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/src/pages/index/index.html');
 });
+// página JUEGOS
+app.use(express.static(__dirname + '/src/pages/games-list'))
+app.get('/games', (req, res) => {
+    res.sendFile(__dirname + '/src/pages/games-list/games-list.html');
+});
 
 // páginas de administración
 // administración JUEGOS

@@ -5,6 +5,7 @@ const menu_bg = document.querySelector(".menu-dark-background");
 
 const url = "https://c95s12k5-3080.brs.devtunnels.ms";
 
+
 // Función para obtener una cookie específica por su nombre
 function getCookie(name) {
     // Busca la cookie por el nombre
@@ -20,7 +21,6 @@ function getCookie(name) {
 
 const createNav = async () => {
     const token = getCookie('jwt');
-    console.log(token)
 
     if(token){
         const authToken = token.replace('jwt=', '')
@@ -83,11 +83,9 @@ const createNav = async () => {
             console.error(error);
         })
     }
-    else{
-        console.log("sin galletita")
-    }
 }
 createNav();
+
 
 menu_bg.addEventListener('click', () => {
     menu.classList.remove("expanded-menu");
@@ -105,7 +103,7 @@ toolbar.addEventListener('click', (e) => {
         menu_bg.classList.toggle("expanded-menu");
     }
     if(e.target.classList.contains("logout-btn")){
-        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None;`;
+        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None`;
         window.location.href = "/";
     }
 })

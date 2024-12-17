@@ -28,6 +28,12 @@
         display: block;
         max-width: 100%;
         max-height: 100%;
+        filter: contrast(0) brightness(2);
+    }
+}
+#home-link:hover{
+    img{
+        filter: contrast(1) hue-rotate(280deg);
     }
 }
 
@@ -71,7 +77,7 @@
         width: fit-content;
         height: 100%;
         img{
-            border: 4px double transparent;
+            border: 2px groove rgba(245, 245, 245, 0.2);;
             border-radius: 50%;
             display: block;
             max-width: 100%;
@@ -83,7 +89,7 @@
             border-color: greenyellow;
         }
     }
-    #logout-btn, #login-btn{
+    #logout-btn{
         width: fit-content;
         height: fit-content;
 
@@ -95,14 +101,7 @@
 
         cursor: pointer;
     }
-    #login-btn{
-        color: greenyellow;
-    }
-    #login-btn:hover{
-        color: aqua;
-    }
     #logout-btn:hover{
         color: gold;
     }
-    
 }

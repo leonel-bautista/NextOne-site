@@ -41,13 +41,25 @@ const upload = multer({
 
 
 // MÉTODO GET
-// para todos los juegos
+// todos los juegos
 router.get('/', controller.showEveryGame);
-// para un solo juego
+// los últimos agregados
+router.get('/latest', controller.showLatestGames);
+// por nombre
+router.get('/search', controller.showGamesByName);
+// juegos activos por nombre
+router.get('/search-active', controller.showActiveGamesByName);
+// cierta cantidad
+router.get('/fixed', controller.showFixedAmount);
+// un solo juego
 router.get('/:game_id', controller.showOneGame);
 
 // MÉTODO POST
 router.post('/', upload.single('game_image'), controller.storeGame);
+
+// MÉTODO PATCH
+// para el estado de un juego
+router.patch('/:game_id/status', controller.patchGameStatus);
 
 // MÉTODO PUT
 router.put('/:game_id', upload.single('game_image'), controller.updateGame);

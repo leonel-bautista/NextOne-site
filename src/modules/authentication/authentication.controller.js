@@ -32,7 +32,7 @@ const navbar = async (req, res) => {
                 toolbar = [['notifications-btn', 'home-btn', 'toggle-menu-btn', 'site-settings-btn', 'logout-btn'],
                            ['hn-envelope-solid', 'hn-home-solid', 'hn-play-solid', 'hn-cog-solid', 'hn-logout-solid'],
                            ['Correo', 'Inicio', 'Menú', 'Ajustes', 'Salir']];
-                navbar = [['#', '#', '#', '#', '#', '#'],
+                navbar = [['/games', '#', '#', '#', '#', '#'],
                           ['large-link games-link', 'large-link downloads-link', 'account-settings-link', 'discussions-link', 'about-link', 'news-link'],
                           ['hn-save-solid', 'hn-download-alt-solid', 'hn-user-solid', 'hn-comments-solid', 'hn-info-circle-solid', 'hn-bullhorn-solid'],
                           ['Lista de juegos', 'Descargas', 'Ajustes de cuenta', 'Discusiones', 'Acerca de', 'Novedades']];
@@ -41,7 +41,7 @@ const navbar = async (req, res) => {
                 toolbar = [['notifications-btn', 'home-btn', 'toggle-menu-btn', 'site-settings-btn', 'logout-btn'],
                            ['hn-envelope-solid', 'hn-home-solid', 'hn-play-solid', 'hn-cog-solid', 'hn-logout-solid'],
                            ['Correo', 'Inicio', 'Menú', 'Ajustes', 'Salir']];
-                navbar = [['#', '#', '#', '#', '#', '#', '/admin/games'],
+                navbar = [['/games', '#', '#', '#', '#', '#', '/admin/games'],
                           ['large-link games-link', 'large-link downloads-link', 'account-settings-link', 'discussions-link', 'about-link', 'news-link', 'large-link admin-link'],
                           ['hn-save-solid', 'hn-download-alt-solid', 'hn-user-solid', 'hn-comments-solid', 'hn-info-circle-solid', 'hn-bullhorn-solid', ''],
                           ['Lista de juegos', 'Descargas', 'Ajustes de cuenta', 'Discusiones', 'Acerca de', 'Novedades', 'Administración']];

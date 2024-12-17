@@ -1,45 +1,65 @@
 const userInfo = document.getElementById('user-info');
 
-userInfo.addEventListener('click', (e) => {
-    if(e.target.classList.contains("logout-btn")){
-        document.cookie = 'jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        window.location.href = "";
-    }
-    if(e.target.classList.contains("login-btn")){
-        window.location.href = "/login";
-    }
-})
+const url = "https://c95s12k5-3080.brs.devtunnels.ms";
 
-const createNav = () => {
-    const token = document.cookie;
 
-    if(!token){
-        console.log("no hay cookie pe");
-        userInfo.innerHTML = `<button id="login-btn" class="login-btn">Iniciar sesión</button>`
-    } else{
+// Función para obtener una cookie específica por su nombre
+function getCookie(name) {
+    // Busca la cookie por el nombre
+    const cookies = document.cookie.split('; ');
+    for (let cookie of cookies) {
+        // Si la cookie tiene el nombre que buscamos, la retornamos
+        if (cookie.startsWith(name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1)); // Retorna el valor de la cookie
+        }
+    }
+    return null; // Si no se encuentra la cookie
+}
+
+const createNav = async () => {
+    const token = getCookie('jwt');
+
+    if(token){
         const authToken = token.replace('jwt=', '')
 
-        // console.log(authToken)
-
-        fetch('http://localhost:3080/auth/navbar', {
-            headers: {'Authorization': authToken}
+        await fetch(`${url}/auth/navbar`, {
+            headers: {'Authorization': authToken},
+            credentials: 'include'
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.nav){
-                const navItems = document.getElementById('nav').querySelector('ul');
-                navItems.innerHTML = data.nav.map(option => 
-                    `<li><a href="">${option}</a></li>`).join('')
-
-                userInfo.innerHTML = `<span id="userName">${data.user_name}</span>
-                                      <a href="" id="userImage"><img src="${data.picture}" alt="Foto de Usuario"></a>
-                                      <button id="logout-btn" class="logout-btn">Cerrar sesión</button>`
+        .then(res => {
+            if (res.ok && res.headers.get("Content-Type").includes("application/json")) {
+                return res.json();
+            } else {
+                throw new Error("La respuesta no es JSON o hubo un error");
             }
+        })
+        .then(data => {
+            // if(data.navbar){
+            //     const navItems = document.getElementById('nav').querySelector('ul');
+            //     navItems.innerHTML = data.navbar.map(option => 
+            //         `<li><a href="">${option}</a></li>`).join('')
+
+            //     userInfo.innerHTML = `<span id="userName">${data.user_name}</span>
+            //                           <a href="" id="userImage"><img src="${data.picture}" alt="Foto de Usuario"></a>
+            //                           <button id="logout-btn" class="logout-btn">Cerrar sesión</button>`
+            // }
+
+            userInfo.innerHTML = `
+                <span id="userName">${data.user_name}</span>
+                <a href="" id="userImage"><img src="${data.user_image}" alt="Foto de Usuario"></a>
+                <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
+            `
         })
         .catch(() => {
             console.error("Hubo un fallo en la autenticación")
         })
     }
 }
+createNav();
 
-// createNav();
+userInfo.addEventListener('click', (e) => {
+    if(e.target.classList.contains("logout-btn")){
+        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None`;
+        window.location.href = "/";
+    }
+})
