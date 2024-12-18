@@ -3,6 +3,7 @@
 
 import express from 'express';
 const router = express.Router();
+const viewsrouter = express.Router();
 
 import {methods as controller} from './games.controller.js'
 
@@ -53,6 +54,8 @@ router.get('/search-active', controller.showActiveGamesByName);
 router.get('/fixed', controller.showFixedAmount);
 // un solo juego
 router.get('/:game_id', controller.showOneGame);
+// toda la información de un solo juego (vista)
+viewsrouter.get('/:game_id', controller.showOneFullGame);
 
 // MÉTODO POST
 router.post('/', upload.single('game_image'), controller.storeGame);
@@ -73,3 +76,4 @@ router.delete('/:game_id', controller.removeGame);
 
 // EXPORTAR
 export const gamesRoutes = router;
+export const viewsGamesRoutes = viewsrouter;

@@ -19,9 +19,15 @@ const corsConfig = {
     credentials: true
 }
 
+// MOTOR DE VISTAS
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/src/pages/views');
+
 app.use(cors(corsConfig));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+
 
 
 // autorizaciones
@@ -34,12 +40,12 @@ app.use(express.static(__dirname + '/src/components'));
 app.use(express.static(__dirname + '/src/uploads'));
 
 // PÁGINAS
-// página LOGIN
+// página INICIO DE SESIÓN
 app.use(express.static(__dirname + '/src/pages/login'));
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/src/pages/login/login.html');
 })
-// página REGISTRO
+// página REGISTRO DE CUENTA
 app.use(express.static(__dirname + '/src/pages/register'));
 app.get('/register', (req, res) => {
     res.sendFile(__dirname + '/src/pages/register/register.html');
@@ -50,7 +56,7 @@ app.use(express.static(__dirname + '/src/pages/index'))
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/src/pages/index/index.html');
 });
-// página JUEGOS
+// página LISTA DE JUEGOS
 app.use(express.static(__dirname + '/src/pages/games-list'))
 app.get('/games', (req, res) => {
     res.sendFile(__dirname + '/src/pages/games-list/games-list.html');
@@ -75,5 +81,11 @@ import { usersRoutes } from './src/modules/users/users.routes.js';
 app.use('/api/users', usersRoutes);
 
 
+// página APLICACIÓN JUEGO
+import { viewsGamesRoutes } from './src/modules/games/games.routes.js';
+app.use(express.static(__dirname + '/src/pages/views/games'));
+app.use('/games/app', viewsGamesRoutes)
+
+
 // SERVER
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`servidor escuchando en el puerto ${PORT}`));

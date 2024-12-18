@@ -3,7 +3,7 @@ const searchInput = document.querySelector("search input[type='text']");
 const dropdown = document.querySelector(".dropdown");
 const gamesList = document.querySelector(".games-list");
 
-const url = "https://localhost:3080";
+const url = "https://c95s12k5-3080.brs.devtunnels.ms";
 
 
 // LÓGICA DEL SLIDESHOW
@@ -39,13 +39,13 @@ const slideshowGames = async () => {
     }
 
     const sliderItem = `
-      <div class="slider-item" data-id="${game.id}">
+      <div class="slider-item">
           <h1 class="item-title">${game.name}</h1>
           <div class="item-info">
               <span>${game.developer}</span>
               <span>Clasificación: +12 Años</span>
           </div>
-          <button class="item-more-btn">Ver Detalles</button>
+          <a href="/games/app/${game.id}" class="item-more-btn">Ver Detalles</a>
           <img src="${fileFolder+gameImage}" alt="Portada de ${game.name}" class="item-image">
       </div>
     `
@@ -112,7 +112,7 @@ const searchGames = async (name) => {
     }
 
     const item = `
-      <a href="#" class="dropdown-item">
+      <a href="/games/app/${game.game_id}" class="dropdown-item">
           <img src="${fileFolder+gameImage}"
           alt="Portada de ${game.game_name}" class="dropdown-item-img">
           <span class="dropdown-item-name">${game.game_name}</span>
@@ -142,10 +142,6 @@ const placeGames = async () => {
   const gamesInfo = await res.json();
 
   gamesInfo.forEach((game) => {
-    // const listedGame = document.createElement("a");
-    // listedGame.className = 'listed-game'
-    // listedGame.href = `/games/app?id=${game.id}`
-
     if(!game.image){
       fileFolder = "/imgs/"
       gameImage = 'game-default-image.jpg';
@@ -155,7 +151,7 @@ const placeGames = async () => {
     }
 
     const info = `
-      <a href="#" class="listed-game">
+      <a href="/games/app/${game.id}" class="listed-game">
           <img src="${fileFolder+gameImage}"
           alt="Portada de ${game.name}" class="game-img">
           <span class="game-name">${game.name}</span>
@@ -163,9 +159,6 @@ const placeGames = async () => {
     `
 
     gamesList.innerHTML += info;
-
-    // listedGame.innerHTML += info;
-    // gamesList.appendChild(listedGame);
   })
 
   offset += limit;

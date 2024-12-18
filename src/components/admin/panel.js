@@ -47,7 +47,9 @@ const createNav = async () => {
             userInfo.innerHTML = `
                 <span id="userName">${data.user_name}</span>
                 <a href="" id="userImage"><img src="${data.user_image}" alt="Foto de Usuario"></a>
-                <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="hn hn-logout-solid"></i>
+                </button>
             `
         })
         .catch(() => {
@@ -59,7 +61,7 @@ createNav();
 
 userInfo.addEventListener('click', (e) => {
     if(e.target.classList.contains("logout-btn")){
-        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None`;
+        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None; domain=c95s12k5-3080.brs.devtunnels.ms`;
         window.location.href = "/";
     }
 })

@@ -144,12 +144,12 @@ const login = async (req, res) => {
                                             process.env.SECRET_KEY,
                                             {expiresIn: process.env.TOKEN_EXPIRATION});
             const cookie = {
-                // httpOnly: false,
+                httpOnly: true,
                 secure: process.env.PRODUCTION,
                 sameSite: "None",
                 expires: new Date(Date.now() + process.env.COOKIE_EXPIRATION * 24 * 60 * 60 * 1000),
                 path: "/",
-                // domain: process.env.DOMAIN
+                domain: process.env.DOMAIN
             }
             
             res.cookie("jwt", token, cookie)

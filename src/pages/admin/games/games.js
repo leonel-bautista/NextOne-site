@@ -1,5 +1,6 @@
+const header = document.querySelector(".main-header");
+const searchInput = document.querySelector(".search-box");
 const table = document.querySelector("table");
-const searchInput = document.querySelector(".search-box")
 
 const modal = document.querySelector("dialog");
 const openFormBtn = document.querySelector(".add-new-btn");
@@ -13,7 +14,7 @@ const gameDeveloper = modalForm.querySelector("#gameDeveloper");
 const gameDescription = modalForm.querySelector("#gameDescription");
 const gameStatus = modalForm.querySelector('input[name=gameStatus]:checked');
 
-const url = "https://localhost:3080";
+const url = "https://c95s12k5-3080.brs.devtunnels.ms";
 
 
 // MÉTODOS API
@@ -220,6 +221,14 @@ searchInput.addEventListener('input', () => {
         searchGames(searchTerm);
     } else{
         placeGames();
+    }
+})
+
+//eventos de botones del header
+header.addEventListener('click', (e) => {
+    if(e.target.classList.contains("reload-table-btn")){
+        searchInput.value = ''
+        placeGames()
     }
 })
 

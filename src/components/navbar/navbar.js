@@ -103,7 +103,7 @@ toolbar.addEventListener('click', (e) => {
         menu_bg.classList.toggle("expanded-menu");
     }
     if(e.target.classList.contains("logout-btn")){
-        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None`;
+        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None; domain=c95s12k5-3080.brs.devtunnels.ms`;
         window.location.href = "/";
     }
 })

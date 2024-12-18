@@ -287,6 +287,7 @@ dialog{
         font-size: 1rem;
         
         position: absolute;
+        top: 0; right: 0;
         
         border: none;
         border-radius: 0.2em;

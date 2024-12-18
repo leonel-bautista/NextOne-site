@@ -19,7 +19,7 @@ const showEveryGame = async (req, res) => {
                  FROM games
                  JOIN developers
                     ON games.developer_id = developers.developer_id
-                 GROUP BY games.game_id`;
+                 GROUP BY games.game_id DESC`;
 
     db.query(sql, (error, result) => {
         if(error){
@@ -53,6 +53,72 @@ const showOneGame = async (req, res) => {
         res.json(result[0]);
     })
 }
+// para la información completa de un solo juego
+const showOneFullGame = async (req, res) => {
+    const {game_id} = req.params;
+    const checkStatus = 'SELECT status FROM games WHERE game_id = ?'
+    db.query(checkStatus, [game_id], (error, result) => {
+        if(error){
+            return res.status(500).json({error: "(❌) ERROR: Vuelva a intentarlo más tarde"});
+        }
+        if(result.length === 0 || result[0].status === 'inactive'){
+            return res.status(404).render('404/404.view.ejs');
+        }
+
+        const sql = `
+            SELECT gameInfo.game_id AS 'id',
+                gameInfo.game_image AS 'image',
+                gameInfo.game_name AS 'name',
+                gameInfo.tags AS 'tags',
+                gameInfo.platforms AS 'platforms',
+                gameInfo.launch_date AS 'launch',
+                gameInfo.developer AS 'developer',
+                gameInfo.game_description AS 'description'
+            FROM (
+                SELECT games.game_id,
+                    games.game_image,
+                    games.game_name,
+                    GROUP_CONCAT(tags.tag_name) AS 'tags',
+                    gamePlatforms.platforms,
+                    games.launch_date,
+                    developers.developer_name AS 'developer',
+                    games.game_description
+                FROM games
+                LEFT JOIN games_tags
+                    ON games.game_id = games_tags.game_id
+                LEFT JOIN tags
+                    ON tags.tag_id = games_tags.tag_id
+                LEFT JOIN (
+                    SELECT games.game_id,
+                        GROUP_CONCAT(platforms.platform_name) AS 'platforms'
+                    FROM games
+                    JOIN games_platforms
+                        ON games.game_id = games_platforms.game_id
+                    JOIN platforms
+                        ON platforms.platform_id = games_platforms.platform_id
+                    GROUP BY games.game_id
+                    ORDER BY platforms.platform_name
+
+                ) AS gamePlatforms
+                    ON games.game_id = gamePlatforms.game_id
+                LEFT JOIN developers
+                    ON developers.developer_id = games.developer_id
+                GROUP BY games.game_id
+
+            ) AS gameInfo
+            
+            WHERE gameInfo.game_id = ?;
+        `
+        db.query(sql, [game_id], (error, result) => {
+            if(error){
+                return res.status(500).json({error: "(❌) ERROR: Vuelva a intentarlo más tarde"});
+            }
+            
+            const game = result[0];
+            res.render('games/games.view.ejs', {game})
+        })
+    })
+}
 // por nombre
 const showGamesByName = async (req, res) => {
     const name = req.query.name;
@@ -66,7 +132,8 @@ const showGamesByName = async (req, res) => {
                     games.status AS 'status'
                  FROM games
                  JOIN developers ON games.developer_id = developers.developer_id
-                 WHERE games.game_name LIKE ?`
+                 WHERE games.game_name LIKE ?
+                 GROUP BY games.game_name`
 
     db.query(sql, [`${name}%`], (error, result) => {
         if(error){
@@ -240,6 +307,7 @@ export const methods = {
     // GET
     showEveryGame,
     showOneGame,
+    showOneFullGame,
     showGamesByName,
     showActiveGamesByName,
     showLatestGames,

@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 *, *::before, *::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Chakra Petch", sans-serif;
 }
 
 body{
@@ -166,11 +166,14 @@ body{
     font-size: 1rem;
     font-weight: 500;
     outline: none;
+    text-decoration: none;
     
     align-self: start;
     
+    color: white;
     background: #83b537;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.4);
     
     cursor: pointer;
 }
