@@ -1,0 +1,617 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Chakra Petch", sans-serif;
+}
+
+body{
+    min-height: 100dvh;
+
+    background-color: rgb(50, 56, 50);
+}
+
+
+/* 
+    CONTENIDO PRINCIPAL DE LA PÁGINA DE JUEGOS
+*/
+main{
+    width: clamp(920px, 80dvw, 1280px);
+    min-height: 100dvh;
+    margin: 1em auto;
+    padding: 2em 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+    border-radius: 0.5em;
+    border: 0.5em outset rgba(0, 0, 0, 0.05);
+
+    background-color: rgb(32, 34, 32);
+}
+
+
+/* ENCABEZADO DEL CONTENIDO */
+.main-header{
+    width: 100%;
+    height: 90px;
+    padding: 1em;
+
+    border-radius: 0.2em;
+    border: 0.2em outset rgba(0, 0, 0, 0.05);
+
+    top: 60px;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+
+    background-color: rgb(37, 39, 37);
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1),
+                -4px -4px 4px rgb(37, 39, 37);
+    backdrop-filter: blur(20px);
+
+    z-index: 20;
+
+    button{        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+
+        cursor: pointer;
+    }
+}
+.selected-btn{
+    width: fit-content;
+    height: 30px;
+    padding: 0.5em 0.8em;
+
+    text-wrap: nowrap;
+    color: white;
+
+    border: 2px outset rgb(152, 227, 40);
+    border-radius: 1em;
+    background-color: transparent;
+
+    span, .hn{
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+}
+.selected-btn:hover{
+    border-style: inset;
+}
+.reload-table-btn{
+    width: auto;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border: none;
+  outline: none;
+  border-radius: 0.4em;
+  color: white;
+  background: transparent;
+  border: 2px outset rgb(152, 227, 40);
+}
+.reload-table-btn > .hn{
+    font-size: 1.2rem;
+    display: block;
+    pointer-events: none;
+}
+.reload-table-btn:hover, .reload-table-btn:focus-visible{
+    background: rgba(173, 255, 47, 0.5);
+}
+.main-header search{
+    width: 100%;
+    height: 40px;
+
+    position: relative;
+
+    form{
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+    }
+    .search-box{
+        width: 100%;
+        height: 40px;
+        padding: 1em;
+
+        font-size: 1rem;
+
+        border-radius: 0.4em;
+    }
+    .search-btn{
+        width: 40px;
+        height: 100%;
+        right: 0;
+        position: absolute;
+
+        font-size: 1rem;
+        
+        color: rgb(213, 213, 213);
+        background-color: transparent;
+
+        border: none;
+    }
+    .search-btn:hover{
+        color: rgb(152, 227, 40);
+    }
+}
+
+.add-new-btn{
+    min-width: fit-content;
+    height: 40px;
+    padding: 1em 0.5em;
+
+    border: 4px outset rgb(152, 227, 40);
+    border-radius: 0.4em;
+
+    background-color: rgb(152, 227, 40);
+
+    position: relative;
+}
+.add-new-btn{
+    .hn, span{
+        color: black;
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+}
+.add-new-btn:hover{
+    border-style: inset;
+}
+
+
+
+/* CONTENIDO */
+.main-content{
+    width: 100%;
+}
+
+main table{
+    width: 100%;
+    height: 100%;
+    
+    border-collapse: collapse;
+    color: rgb(199, 188, 189);
+
+    thead{
+        height: fit-content;
+        top: 150px;
+        position: sticky;
+
+        backdrop-filter: blur(20px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+
+        z-index: 10;
+    }
+    th{
+        padding: 0.5em;
+        position: relative;
+        text-align: left;
+
+        background-color: rgba(152, 227, 40, 0.8);
+        color: rgb(38, 41, 38);
+    }
+    th:not(:last-child)::after{
+        content: '';
+        top: 0;
+        right: 0;
+
+        height: 100%;
+        width: 2px;
+
+        position: absolute;
+        background-image: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(172, 255, 47, 0.3),
+            transparent
+        );
+    }
+    tbody{
+        overflow: hidden;
+    }
+    tr{
+        display: grid;
+        grid-template-columns: 50px 80px 6fr 7fr minmax(150px, 4fr) minmax(90px, 3fr) minmax(130px, 4fr);
+        grid-template-rows: 1fr;
+    }
+    td{
+        height: clamp(80px, 20dvh, 120px);
+
+        align-content: center;
+        overflow: hidden;
+
+        background-image: linear-gradient(
+            to bottom,
+            rgba(31, 32, 27, 0.5),
+            rgba(16, 19, 13, 0.3)
+        );
+    }
+    td:not(:nth-child(4), :nth-child(5)){
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    td:nth-child(3){
+        padding: 0.5em;
+    }
+    td:nth-child(4),
+    td:nth-child(5){
+        padding: 0 1em;
+    }
+}
+
+#select-row-input{
+    width: 20px;
+    height: 20px;
+}
+.game-img{
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.3em;
+
+    display: block;
+    text-align: center;
+    align-content: center;
+}
+.game-name{
+    font-size: 1.1rem;
+    font-weight: bolder;
+
+    color: white;
+
+    align-self: center;
+}
+/* .game-launch-date{
+    color: rgb(199, 188, 189);
+} */
+.game-developer{
+    font-weight: bold;
+    word-wrap: break-word;
+
+    color: white;
+}
+.game-status{
+    width: 80px;
+    height: fit-content;
+    padding: 0.3em;
+    border-radius: 1em;
+
+    font-size: 1rem;
+    text-align: center;
+
+    color: rgb(188, 199, 190);
+}
+.game-status.active{
+    background-color: rgba(134, 250, 38, 0.3);
+}
+.game-status.inactive{
+    background-color: rgba(220, 58, 252, 0.3);
+}
+.table-btn{
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+
+    border: none;
+    border-radius: 0.2em;
+    cursor: pointer;
+    
+    color: rgb(199, 188, 189);
+    background-color: transparent;
+
+    transition: background-color 0.2s ease;
+
+    .hn{
+        display: block;
+        pointer-events: none;
+    }
+}
+.toggle-status-btn:hover,
+.toggle-status-btn:focus-visible{
+    color: rgb(232, 149, 248);
+    background-color: rgba(219, 58, 252, 0.1);
+}
+.edit-btn:hover,
+.edit-btn:focus-visible{
+    color: rgb(250, 203, 121);
+    background-color: rgba(239, 157, 16, 0.1);
+}
+.delete-btn:hover,
+.delete-btn:focus-visible{
+    color: rgb(250, 143, 143);
+    background-color: rgba(255, 54, 54, 0.1);
+}
+
+
+/*  */
+/* MODAL DEL FORMULARIO */
+main dialog{
+    width: clamp(20px, 80dvw, 700px);
+    height: fit-content;
+    margin: auto;
+
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    border: 10px double rgba(0, 0, 0, 0.2);
+    border-radius: 0.5em;
+
+    background-image: url("https://img.freepik.com/free-vector/gradient-abstract-pixel-rain-background_23-2148366787.jpg?t=st=1731389437~exp=1731393037~hmac=a9a600a3a233d151244051816b8443c6ea3a2ad7c76c2fef31010a6c4645bba7&w=740");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+    background-color: rgba(15, 29, 0, 0.95);
+    background-blend-mode:saturation;
+}
+main dialog{
+    .modal-btn{
+        font-weight: bolder;
+
+        border-radius: 0.2em;
+        border: 3px outset;
+        color: black;
+
+        cursor: pointer;
+
+        .hn{
+            display: block;
+            pointer-events: none;
+        }
+    }
+    header{
+        width: 100%;
+        height: 60px;
+        padding: 0 1em;
+
+        top: 0;
+        position: sticky;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: greenyellow;
+        background-image: linear-gradient(
+            to bottom left,
+            rgb(26, 25, 25),
+            black
+            );
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+
+        z-index: 20;
+
+        h2{
+            display: flex;
+            gap: 0.2em;
+        }
+        span{
+            background: rgba(242, 188, 59, 0.27);
+            border-radius: 0.2em;
+            padding: 0 0.3em;
+        }
+        .close-modal-btn{
+            height: 30px;
+            width: 30px;
+            margin-left: auto;
+
+            border-color: rgb(227, 52, 40);
+            background-color: rgb(227, 52, 40);
+        }
+        .close-modal-btn:hover{
+            border-style: inset;
+            background-color: rgb(172, 49, 41);
+        }
+    }
+
+    form{
+        width: 650px;
+        height: 500px;
+        padding-top: 1em;
+        margin: auto;
+
+        display: grid;
+        gap: 1em;
+        grid-template-rows: 3fr 2fr 1fr;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            "image image details details"
+            "status description description description"
+            "footer footer footer footer"
+        ;
+
+        fieldset:nth-child(1){
+            grid-area: image;
+        }
+        fieldset:nth-child(2){
+            grid-area: details;
+        }
+        fieldset:nth-child(3){
+            grid-area: status;
+        }
+        fieldset:nth-child(4){
+            grid-area: description;
+        }
+        footer{
+            grid-area: footer;
+        }
+
+        fieldset{
+            min-width: 0;
+            min-height: 0;
+            padding: 0.5em;
+
+            display: flex;
+            flex-direction: column;
+
+            border: 2px solid rgba(172, 255, 47, 0.5);
+            border-radius: 0.2em;
+
+            overflow: hidden;
+        }
+        fieldset legend{
+            padding: 0.1em 0.5em;
+            font-weight: bold;
+
+            cursor: default;
+
+            background-color: rgba(172, 255, 47, 0.5);
+        }
+        fieldset label{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex: 1;
+        }
+        fieldset:nth-child(1) div{
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            label{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                border: 2px double transparent;
+            }
+            input{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+
+                /* display: none; */
+                color: transparent;
+                background-color: transparent;
+            }
+            input::file-selector-button{
+                display: none;
+            }
+            .hn{
+                font-size: 2.5rem;
+                display: none;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+                display: block;
+                margin: auto;
+            }
+        }
+        fieldset:nth-child(1) label:hover,
+        fieldset:nth-child(1) label:focus-within{
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            border-color: rgb(152, 227, 40);
+
+            .hn{
+                color: rgb(152, 227, 40);
+                text-shadow: 0 0 10px black;
+                display: block;
+            }
+        }
+        fieldset:nth-child(3) label{
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5em;
+            padding: 0 0.5em;
+        }
+        fieldset:nth-child(3) label:hover,
+        fieldset:nth-child(3) label:focus-within{
+            background-color: rgba(172, 255, 47, 0.1);
+        }
+
+        textarea{
+            height: 100%;
+            width: 100%;
+            padding: 0.2em;
+            font-size: 1rem;
+        }
+        input, select{
+            height: 32px;
+            padding: 0.2em;
+            font-size: 1rem;
+        }
+        select,
+        input:not([type="text"]),
+        fieldset label{
+            cursor: pointer;
+        }
+
+        footer{
+            min-width: 0;
+            min-height: 0;
+            width: 100%;
+            height: 60px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1em;
+        }
+        .modal-btn{
+            width: fit-content;
+            height: 40px;
+            font-size: 1.2rem;
+            padding: 0 0.6em;
+        }
+        .modal-btn:hover{
+            border-style: inset;
+        }
+        .clean-modal-btn{
+            margin-right: auto;
+        }
+        .cancel-btn{
+            background-color: rgb(227, 52, 40);
+            border-color: rgb(227, 52, 40);
+        }
+        .save-modal-btn{
+            border-color: rgb(152, 227, 40);
+            background-color: rgb(152, 227, 40);
+        }
+    }
+}
+main dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(1px);
+}
+main dialog.edit-mode{
+    background-color: rgba(29, 22, 0, 0.95);
+    
+    header{
+        color: rgb(250, 203, 121);
+    }
+    fieldset{
+        border-color: rgba(255, 189, 47, 0.5);
+    }
+    fieldset legend{
+        background-color: rgb(175, 124, 36);
+    }
+    fieldset:nth-child(1) label:hover,
+    fieldset:nth-child(1) label:focus-within{
+        border-color: rgb(227, 186, 40);
+
+        .hn{
+            color: rgb(227, 186, 40);
+        }
+    }
+    fieldset:nth-child(3) label:hover,
+    fieldset:nth-child(3) label:focus-within{
+        background-color: rgba(255, 210, 47, 0.1);
+    }
+}

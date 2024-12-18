@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="./index.css">
 
-    <title>Inicio</title>
+    <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/navbar/navbar.css">
+
+    <title>NextOne</title>
 
 </head>
 <body>
-    <nav id="navigation">
+    <aside id="navigation">
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
-            $.get('/src/components/navbar/navbar.html', function(data){
+            $.get('/navbar/navbar.html', function(data){
                 $("#navigation").replaceWith(data);
             });
         </script>
-    </nav>
+    </aside>
 
     <main class="index-main">
-        <section class="frontPage">
-            <img class="frontPage-background-img" src="/public/imgs/fondo-inicio.jpg" alt="">
-            
-            <img class="game-img game-1" src="/public/imgs/fondo-inicio-juego1.png" alt="">
-            <img class="game-img game-2" src="/public/imgs/fondo-inicio-juego2.png" alt="">
-            <img class="game-img game-3" src="/public/imgs/fondo-inicio-juego3.png" alt="">
-            <img class="game-img game-4" src="/public/imgs/fondo-inicio-juego4.png" alt="">
-            <img class="game-img game-5" src="/public/imgs/fondo-inicio-juego5.png" alt="">
-        
+        <header class="frontPage">
+            <img class="frontPage-background-img" src="/imgs/fondo-inicio.jpg" alt="">
+
+            <img class="game-img game-1" src="/imgs/index-game-1.webp" alt="">
+            <img class="game-img game-2" src="/imgs/index-game-2.webp" alt="">
+            <img class="game-img game-3" src="/imgs/index-game-3.webp" alt="">
+            <img class="game-img game-4" src="/imgs/index-game-4.webp" alt="">
+            <img class="game-img game-5" src="/imgs/index-game-5.webp" alt="">
+
             <h1 class="frontPage-title">
                 MÁS JUEGOS
                 <span>MÁS POTENCIA</span>
@@ -37,13 +39,13 @@
             <a href="#" class="frontPage-downloads-link">
                 JUEGA AHORA
             </a>
-        </section>
+        </header>
 
         <section class="main-content">
-            <h1>
-                Por ahora solo funciona el listado de juegos
-                mediante local storage 👍
-            </h1>
+            <h1>TITULO CONTENIDO</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse corrupti atque voluptas optio. Molestiae, suscipit est iure rerum omnis, adipisci dolore debitis vitae voluptas facere assumenda recusandae? Ipsa, placeat. Velit, nostrum unde! Consequatur perspiciatis voluptatem necessitatibus, incidunt, provident quas mollitia dicta esse officia debitis reiciendis nihil nulla dolore! Consequuntur quae placeat doloribus ipsum ex suscipit voluptatibus officia doloremque atque maxime quis, id vitae debitis quidem laudantium delectus consectetur vel illo inventore. Laudantium nesciunt ipsam repudiandae, unde recusandae ipsa nisi quibusdam commodi dicta iste enim omnis corrupti tempora vitae quam id hic nihil inventore, ratione fuga? Quidem, illum ullam. Hic, et.
+            </p>
         </section>
     </main>
 </body>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+    <link rel="stylesheet" href="/games-list.css">
+    <link rel="stylesheet" href="/navbar/navbar.css">
+
+    <script src="/games-list.js" defer></script>
+
+    <title>Lista de juegos | NextOne</title>
+
+</head>
+<body>
+    <aside id="navigation">
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $.get('/navbar/navbar.html', function(data){
+                $("#navigation").replaceWith(data);
+            });
+        </script>
+    </aside>
+
+    <header class="slideshow">
+    </header>
+
+    <main>
+        <header>
+            <h3>
+                TUS JUEGOS <span>EN CUALQUIER DISPOSITIVO</span>
+            </h3>
+
+            <search>
+                <form>
+                    <input type="text" placeholder="Buscar...">
+                    <button type="submit"><i class="hn hn-search"></i></button>
+                    <div class="dropdown">
+                    </div>
+                </form>
+            </search>
+        </header>
+
+        <section class="games-list">
+        </section>
+    </main>
+</body>
+</html>

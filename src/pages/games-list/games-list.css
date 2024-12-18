@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Chakra Petch", sans-serif;
+}
+
+body{
+    max-width: 100dvw;
+    min-height: 100dvh;
+
+    background: rgb(22, 25, 21);
+}
+
+
+/* 
+    PRESENTACIÓN DE LA PÁGINA DE JUEGOS
+*/
+.slideshow{
+    width: 100%;
+    height: 60dvh;
+
+    background: rgb(22, 25, 21);
+
+    display: grid;
+    position: relative;
+
+    z-index: 50;
+    overflow: hidden;
+
+    .hn{
+        display: block;
+        font-size: 1.5rem;
+        pointer-events: none;
+    }
+}
+
+/* CONTROLES DEL SLIDESHOW */
+.arrow-left, .arrow-right{
+    width: fit-content;
+    height: fit-content;
+    padding: 0.6em;
+    border: none;
+    border-radius: 50%;
+
+    position: absolute;
+    outline: none;
+    
+    background-color: rgba(0, 0, 0, 0.3);
+    color: rgb(104, 153, 28);
+    box-shadow: 0 0 2px rgba(104, 153, 28, 0.3);
+    
+    cursor: pointer;
+    z-index: 60;
+}
+.arrow-left:hover, .arrow-left:focus-visible,
+.arrow-right:hover, .arrow-right:focus-visible{
+    color: white;
+    box-shadow: 0 0 2px greenyellow;
+    background-color: rgb(131, 181, 55);
+}
+.arrow-left {
+    left: 80px;
+    top: 50%;
+}
+.arrow-right {
+    right: 20px;
+    top: 50%;
+}
+.slider{
+    width: fit-content;
+    bottom: 10px;
+    margin-left: 60px;
+
+    position: absolute;
+    display: flex;
+    gap: 0.8em;
+    justify-self: center;
+
+    z-index: 60;
+}
+.slide-btn{
+    width: 40px;
+    height: 8px;
+
+    border: none;
+    outline: none;
+
+    background: rgba(76, 81, 69, 0.3);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
+    cursor: pointer;
+}
+.slide-btn:hover, .slide-btn:focus-visible{
+    background: rgba(126, 139, 109, 0.3);
+}
+.slide-btn.current-slide{
+    background: greenyellow;
+}
+
+/* JUEGOS A MOSTRAR EN EL SLIDESHOW */
+.slider-item.current-slide{
+    display: grid;
+}
+.slider-item{
+    width: 100dvw;
+    height: 100%;
+
+    display: none;
+    grid-template-rows: 4fr 2fr 3fr;
+    grid-template-columns: 50dvw;
+    padding-left: clamp(60px, 5em, 80px);
+    gap: 1em;
+    justify-items: center;
+
+    overflow: hidden;
+
+    z-index: 55;
+    animation: fade 1.5s;
+}
+.slider-item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+
+    background:
+        linear-gradient(to top, rgb(22, 25, 21) 20%, transparent),
+        linear-gradient(to right, rgb(22, 25, 21) 10%, transparent);
+    background-size: cover;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes fade{
+    from {opacity: 0.4}
+    to {opacity: 1}
+  }
+.item-title {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+
+    align-self: end;
+    cursor: default;
+}
+.item-info {
+    color: rgb(204, 202, 202);
+
+    display: grid;
+    align-self: end;
+    justify-items: center;
+
+    cursor: default;
+}
+.item-more-btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.2em;
+
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    text-decoration: none;
+    
+    align-self: start;
+    
+    color: white;
+    background: #83b537;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.4);
+    
+    cursor: pointer;
+}
+.item-more-btn:hover, .item-more-btn:focus-visible{
+    background: greenyellow;
+}
+.item-image{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+
+    display: block;
+    position: absolute;
+    align-self: center;
+
+    z-index: -1;
+}
+
+
+/* 
+    SECCIÓN PRINCIPAL DE LA LISTA DE JUEGOS
+*/
+main{
+    width: 100%;
+
+    background: rgb(22, 25, 21);
+}
+
+/* BUSCADOR DE JUEGOS */
+main header{
+    width: 100%;
+    height: fit-content;
+    padding: 25dvh 3em 3em calc(3em + 60px);
+    color: white;
+    display: grid;
+    gap: 3em;
+}
+main header{
+    h3{
+        font-size: 3rem;
+        text-shadow: 2px 2px 2px rgba(173, 255, 47, 0.5);
+        cursor: default;
+    }
+    span{
+        color: transparent;
+        background: linear-gradient(to bottom right, white, greenyellow, green);
+        background-clip: text;
+    }
+}
+
+main search{
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+}
+
+search form{
+    width: min(100%, 600px);
+    
+    position: relative;
+    display: flex;
+}
+search form{
+    .hn{
+        display: block;
+        pointer-events: none;
+    }
+    input{
+        width: 100%;
+        padding: 0 3em 0 1em;
+        color: white;
+        border: none;
+        outline: none;
+        background: linear-gradient(to top left, rgba(18, 19, 17, 0.5), transparent);
+        border-radius: 0.4em;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input:focus-visible{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+        background: linear-gradient(to bottom right, rgb(18, 19, 17), transparent);
+    }
+    input:focus-visible button{
+        color: white;
+    }
+    button{
+        position: absolute;
+        top: 0;
+        right: 0;
+        aspect-ratio: 1 / 1;
+        width: auto;
+        height: 100%;
+        border: none;
+        outline: none;
+        font-size: 1.2rem;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        border-radius: 0.4em;
+    }
+    button:hover, button:focus-visible{
+        background: rgba(172, 255, 47, 0.05);
+        color: greenyellow;
+    }
+}
+
+.dropdown{
+    position: absolute;
+  width: 100%;
+  height: fit-content;
+  background: black;
+  z-index: 100;
+  top: 50px;
+  border-radius: 0.5em;
+  overflow: hidden;
+  overflow-y: auto;
+
+  
+  display: flex;
+  
+  
+  flex-wrap: wrap;
+  max-height: 460px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+.dropdown-item{
+    width: 100%;
+  height: 70px;
+  display: flex;
+  padding: 0.5em;
+  text-decoration: none;
+  background: rgb(15, 17, 12);
+}
+.dropdown-item:nth-child(even){
+    background: rgba(91, 125, 38, 0.1);
+}
+.dropdown-item:hover, .dropdown-item:focus-visible{
+    background: rgba(173, 255, 47, 0.2);
+}
+.dropdown-item-img{
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  border-radius: 0.5em;
+  overflow: hidden;
+  color: greenyellow;
+}
+.dropdown-item-name{
+    font-size: 1rem;
+  padding-top: 0;
+  color: #d5d5d5;
+  align-content: center;
+  padding-left: 0.5em;
+  background: transparent;
+}
+
+
+/* LISTADO DE JUEGOS */
+main .games-list{
+    padding: 0 3em 3em calc(3em + 60px);
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 180px);
+    grid-template-columns: repeat(auto-fill, 180px);
+    gap: 1em;
+    justify-content: space-evenly;
+}
+
+.listed-game{
+    width: 180px;
+  height: 180px;
+  position: relative;
+  border-radius: 1em;
+  overflow: hidden;
+  display: grid;
+  outline: none;
+  transition: scale 0.5s ease, box-shadow 0.5s ease;
+}
+.listed-game:hover, .listed-game:focus-visible{
+    box-shadow: 0 0 20px black;
+    scale: 1.1;
+    z-index: 50;
+
+    .game-name{
+        opacity: 1;
+    }
+}
+.listed-game::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, black, transparent);
+    background-size: cover;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    opacity: 0
+}
+.listed-game:hover::after, .listed-game:focus-visible::after{
+    opacity: 1;
+}
+
+.game-img{
+    width: auto;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  position: absolute;
+  justify-self: center;
+  align-content: center;
+  text-align: center;
+  color: greenyellow;
+}
+.game-name{
+    position: absolute;
+    bottom: 0;
+
+    /* text-decoration: none; */
+    color: white;
+    z-index: 100;
+    width: 100%;
+    height: fit-content;
+    align-content: end;
+    padding: 0 1em 1em 1em;
+    font-size: 1rem;
+    font-weight: 500;
+    text-shadow: 0 2px 1px rgba(173, 255, 47, 0.3);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}

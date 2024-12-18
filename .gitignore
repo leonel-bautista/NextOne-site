@@ -1,4 +1,7 @@
-#NODE.JS
+# NODE.JS
 node_modules
-uploads
 .env
+
+# archivos
+games-images
+users-pictures

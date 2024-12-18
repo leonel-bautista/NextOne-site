@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+    <link rel="stylesheet" href="/register.css">
+    
+    <script src="/register.js" defer></script>
+
+    <title>Crear cuenta</title>
+
+</head>
+<body>
+    <header class="nav-header">
+        <a href="/">
+            <i class="hn hn-home-solid"></i>
+        </a>
+    </header>
+
+    <aside>
+        <div>
+            <span>¿Ya tienes cuenta?</span>
+            <a href="/login">Inicia sesión</a>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque reprehenderit ratione optio consequuntur perferendis libero rem, qui quasi nam vitae.</p>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Crear una cuenta</h1>
+        </header>
+
+        <form>
+            <label for="userName">
+                <span>Nombre de usuario</span>
+                <input type="text" id="userName">
+                <span class="message"></span>
+            </label>
+            <label for="userEmail">
+                <span>Dirección de correo electrónico</span>
+                <input type="text" id="userEmail">
+                <span class="message"></span>
+            </label>
+            <label for="userPassword">
+                <span>Contraseña</span>
+                <input type="password" id="userPassword">
+                <span class="message"></span>
+            </label>
+            <label for="confirmPassword">
+                <span>Confirmar contraseña</span>
+                <input type="password" id="confirmPassword">
+                <span class="message"></span>
+            </label>
+
+            <footer>
+                <button type="submit">
+                    Crear cuenta
+                    <div><i class="hn hn-spinner"></i></div>
+                </button>
+                <span class="message"></span>
+            </footer>
+        </form>
+
+        <dialog data-modal>
+            <button><i class="hn hn-times-solid"></i></button>
+            <span>✔ Cuenta registrada con éxito</span>
+        </dialog>
+    </main>
+</body>
+</html>

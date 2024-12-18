@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/@hackernoon/pixel-icon-library/fonts/iconfont.css">
+    <link rel="stylesheet" href="/games.view.css">
+    <link rel="stylesheet" href="/navbar/navbar.css">
+
+    <script src="/games.view.js" defer></script>
+
+    <title><%= game.name %></title>
+
+</head>
+<body>
+    <aside id="navigation">
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script>
+            $.get('/navbar/navbar.html', function(data){
+                $("#navigation").replaceWith(data);
+            });
+        </script>
+    </aside>
+
+    <main>
+        <header>
+            <img id="image" src="" alt="Portada de <%= game.name %>" data-image="<%= game.image %>">
+
+            <div class="game-details">
+                <h1 id="name"><%= game.name %></h1>
+
+                <div class="tags-names" data-tags="<%= game.tags %>"> <!-- javascript -->
+                    <!-- <span id="tag">Disparos</span>
+                    <span id="tag">Multijugador</span>
+                    <span id="tag">Acción</span> -->
+                </div>
+
+                <div class="platforms-names" data-platforms="<%= game.platforms %>"> <!-- javascript -->
+                    <!-- <p>Disponible en</p>
+                    <a href="#" id="platform">
+                        <i class="hn hn-external-link"></i>
+                        <span>Steam</span>
+                    </a>
+                    <a href="#" id="platform">
+                        <i class="hn hn-external-link"></i>
+                        <span>EpicGames Store</span>
+                    </a> -->
+                </div>
+
+                <div class="btns-row">
+                    <a href="#" class="play-btn">JUGAR</a>
+                </div>
+            </div>
+
+            <div class="development-details">
+                <h2 class="title">DESARROLLO</h2>
+
+                <div class="development">
+                    <label>Fecha de lanzamiento</label>
+                    <span id="launchDate" data-date="<%= game.launch %>"></span> <!-- javascript -->
+
+                    <label>Desarrollado por</label>
+                    <span id="developer"><%= game.developer %></span>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="description-details">
+                <h2 class="title">ACERCA DE <%= game.name.toUpperCase() %></h2>
+                
+                <p id="description"><%= game.description %></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

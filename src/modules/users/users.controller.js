@@ -1,14 +1,14 @@
 
-////////////// CONTROLADORES DEL MÓDULO "USUARIOS" ////
+////////////// CONTROLADOR DEL MÓDULO "USUARIOS" ////
 
-const db = require('/@database/db');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import {conn as db} from '../../database/db.js';
+import jsonwebtoken from 'jsonwebtoken';
+import bcryptjs from 'bcryptjs';
 
 
 // MÉTODO GET
 // para todos los usuarios
-const showEveryUser = (req, res) => {
+async function showEveryUser(req, res){
     const sql = `SELECT * FROM users`;
 
     db.query(sql, (error, result) => {
@@ -20,7 +20,7 @@ const showEveryUser = (req, res) => {
     })
 }
 // para un solo usuario
-const showOneUser = (req, res) => {
+async function showOneUser(req, res){
     const {user_id} = req.params;
     const sql = `SELECT * FROM users WHERE user_id = ?`;
 
@@ -37,8 +37,7 @@ const showOneUser = (req, res) => {
 }
 
 // MÉTODO POST
-// registrar una cuenta
-const registerUser = (req, res) => {
+async function storeUser(req, res){
     let userImage = "";
     if(req.file){
         userImage = req.file.filename;
@@ -46,59 +45,20 @@ const registerUser = (req, res) => {
     const {tier_id, user_name, user_alias, email, password} = req.body;
     const sql = `INSERT INTO users (user_image, tier_id, user_name, user_alias, email, password)
                  VALUES (?, ?, ?, ?, ?, ?)`;
-    const hashedPassword = bcrypt.hashSync(password, 8);
+    const hashedPassword = await bcryptjs.hash(password, 10);
 
     db.query(sql, [userImage, tier_id, user_name, user_alias, email, hashedPassword], (error, result) => {
         if(error){
             return res.status(500).json({error: "(❌) ERROR: Vuelva a intentarlo más tarde"});
         }
 
-        const token = jwt.sign({user_id: result.insertId}, process.env.SECRET_KEY, {
-            expiresIn: "1h"
-        });
-
-        const userInfo = {mensaje: "(✔) Usuario registrado con éxito!",
-                          user_id: result.insertId,
-                          ...req.file,
-                          ...req.body,
-                          token: token};
-        res.status(201).send(userInfo);
+        res.status(201).json({mensaje: "(✔) Usuario registrado con éxito!"});
     })
 
 }
-// ingresar a una cuenta
-const loginUser = (req, res) => {
-    const {user_name, password} = req.body;
-    const sql = `SELECT * FROM users WHERE user_name = ?`;
-
-    db.query(sql, [user_name, password], (error, result) => {
-        if(error){
-            return res.status(500).json({error: "(❌) ERROR: Vuelva a intentarlo más tarde"});
-        }
-        if(result.length == 0){
-            return res.status(404).json({mensaje: "(❌) ERROR: Usuario no encontrado"});
-        }
-
-        const passwordIsValid = bcrypt.compareSync(password, result[0].password);
-        if(!passwordIsValid){
-            return res.status(401).json({mensaje: "(❌) ERROR: Contraseña incorrecta",
-                                         auth: false,
-                                         token: null});
-        }
-
-        const token = jwt.sign({user_id: result.user_id}, process.env.SECRET_KEY, {
-            expiresIn: "1h"
-        });
-        
-        res.send({mensaje: "(✔) Login con éxito!",
-                  auth: true,
-                  token: token});
-    })
-
-};
 
 // MÉTODO PUT
-const updateUser = (req, res) => {
+async function updateUser(req, res){
     let userImage = "";
     if(req.file){
         userImage = req.file.filename;
@@ -108,7 +68,7 @@ const updateUser = (req, res) => {
     const sql = `UPDATE users
                  SET user_image = ?, tier_id = ?, user_name = ?, user_alias = ?, email = ?, password = ?
                  WHERE user_id = ?`;
-    const hashedPassword = bcrypt.hashSync(password, 8);
+    const hashedPassword = await bcryptjs.hash(password, process.env.SALT);
 
     db.query(sql, [userImage, tier_id, user_name, user_alias, email, hashedPassword, user_id], (error, result) => {
         if(error){
@@ -118,21 +78,12 @@ const updateUser = (req, res) => {
             return res.status(404).json({error: "(❌) ERROR: No se encontraron los datos a actualizar"});
         }
 
-        const token = jwt.sign({user_id: result.insertId}, process.env.SECRET_KEY, {
-            expiresIn: "1h"
-        });
-
-        const userInfo = {mensaje: "(✔) Usuario actualizado con éxito!",
-                          ...req.params,
-                          ...req.file,
-                          ...req.body,
-                          token: token};
-        res.status(201).send(userInfo);
+        res.status(201).json({mensaje: "(✔) Usuario actualizado con éxito!"});
     })
 }
 
 // MÉTODO DELETE
-const removeUser = (req, res) => {
+async function removeUser(req, res){
     const {user_id} = req.params;
     const sql = `DELETE FROM users WHERE user_id = ?`
 
@@ -150,13 +101,12 @@ const removeUser = (req, res) => {
 
 
 // EXPORTAR
-module.exports = {
+export const methods = {
     // GET
     showEveryUser,
     showOneUser,
     // POST
-    registerUser,
-    loginUser,
+    storeUser,
     // PUT
     updateUser,
     // DELETE
