@@ -14,6 +14,7 @@ const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const URL = process.env.URL;
 const PORT = process.env.PORT || 4000;
+const IP = process.env.IP;
 const corsConfig = {
     origin: URL,
     credentials: true
@@ -27,7 +28,6 @@ app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-
 
 
 // autorizaciones
@@ -88,4 +88,4 @@ app.use('/games/app', viewsGamesRoutes)
 
 
 // SERVER
-app.listen(PORT, () => console.log(`servidor escuchando en el puerto ${PORT}`));
+app.listen(PORT, IP, () => console.log(`servidor escuchando en el puerto ${PORT}`));

@@ -14,7 +14,7 @@ const gameDeveloper = modalForm.querySelector("#gameDeveloper");
 const gameDescription = modalForm.querySelector("#gameDescription");
 const gameStatus = modalForm.querySelector('input[name=gameStatus]:checked');
 
-const url = "https://c95s12k5-3080.brs.devtunnels.ms";
+const url = "https://nextone.alwaysdata.net";
 
 
 // MÉTODOS API

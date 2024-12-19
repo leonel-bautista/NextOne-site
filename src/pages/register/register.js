@@ -7,7 +7,7 @@ const confirmPassword = document.querySelector("#confirmPassword");
 const submitBtn = document.querySelector("button[type='submit']");
 const modal = document.querySelector("dialog");
 
-const url = "https://c95s12k5-3080.brs.devtunnels.ms";
+const url = "https://nextone.alwaysdata.net";
 
 
 // FUNCIONES DE VALIDACIÓN

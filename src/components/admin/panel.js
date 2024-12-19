@@ -1,6 +1,6 @@
 const userInfo = document.getElementById('user-info');
 
-const url = "https://c95s12k5-3080.brs.devtunnels.ms";
+const url = "https://nextone.alwaysdata.net";
 
 
 // Función para obtener una cookie específica por su nombre
@@ -61,7 +61,7 @@ createNav();
 
 userInfo.addEventListener('click', (e) => {
     if(e.target.classList.contains("logout-btn")){
-        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Secure; SameSite=None; domain=c95s12k5-3080.brs.devtunnels.ms`;
+        document.cookie = `jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; HttpOnly; Secure; SameSite=None; domain=nextone.alwaysdata.net`;
         window.location.href = "/";
     }
 })

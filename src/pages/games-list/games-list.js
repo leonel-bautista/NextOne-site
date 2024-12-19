@@ -3,8 +3,7 @@ const searchInput = document.querySelector("search input[type='text']");
 const dropdown = document.querySelector(".dropdown");
 const gamesList = document.querySelector(".games-list");
 
-const url = "https://c95s12k5-3080.brs.devtunnels.ms";
-
+const url = "https://nextone.alwaysdata.net";
 
 // LÓGICA DEL SLIDESHOW
 let amount = 5;

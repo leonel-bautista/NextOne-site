@@ -4,7 +4,7 @@ const password = document.querySelector("#userPassword");
 
 const submitBtn = document.querySelector("button[type='submit']");
 
-const url = "https://c95s12k5-3080.brs.devtunnels.ms";
+const url = "https://nextone.alwaysdata.net";
 
 
 // FUNCIONES DE VALIDACIÓN
